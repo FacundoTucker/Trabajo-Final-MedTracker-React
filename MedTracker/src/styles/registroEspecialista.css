@@ -1,0 +1,117 @@
+.contenedorRegistro {
+    display: flex;
+    width: 1000px;
+    height: 850px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.contenedorForm {
+    width: 40%;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contenedorRegistro h2 {
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.contenedorRegistro form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorRegistro label{
+    color: #676767;
+    margin: 8px 0 4px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.contenedorRegistro input {
+    width: 100%;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    border-radius: 15px;
+    height: 25px;
+    padding: 0 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.contenedorRegistro button{
+    width: 100%;
+    height: 35px;
+    border-radius: 15px;
+    border: none;
+    background-color: #00acdb;
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contenedorRegistro button:hover{
+    background-color: #008bb5;
+}
+
+.contenedorRegistro.mostrarMensajeError {
+    visibility: visible;
+    color: red;
+    font-size: 12px
+}
+
+.contenedorRegistro.mensajeError {
+    visibility: hidden;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.imagenLateral {
+    width: 60%;
+    height: 100%;
+}
+
+.imagenLateral img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenedorForm a {
+  font-size: 13px;
+  text-align: center;
+  color: #00acdb;
+  text-decoration: none;
+}
+
+.contenedorForm a:hover {
+  text-decoration: underline;
+}
+
+.documentoContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.documentoContainer select,
+.documentoContainer input {
+    flex: 1;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    border-radius: 15px;
+    height: 25px;
+    padding: 0 8px;
+    font-size: 13px;
+}
