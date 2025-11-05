@@ -183,7 +183,7 @@ img{
 /* CARGA EVOLUTIVO */
 
 
-body.cargaEvolutivo {
+.cargaEvolutivo {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -197,7 +197,7 @@ body.cargaEvolutivo {
   padding: 1rem;
 }
 
-main.cargaEvolutivo {
+.cargaEvolutivo {
   flex: 1;                        
   display: flex;
   align-items: center;            
@@ -241,7 +241,7 @@ hr {
 
 /* VER HISTORIA CLINICA */
 
-body.verHC {
+.verHC {
   min-height: 100vh;          
   background: #f2f6ff;         
   display: flex;
@@ -249,7 +249,7 @@ body.verHC {
   align-items: center;
   header { width:100%; }
 }
-body.verHC .contenedorPrincipalVerHC {
+.verHC .contenedorPrincipalVerHC {
   width: 100%;
   max-width: 860px;            
   background: #fff;
@@ -267,7 +267,7 @@ body.verHC .contenedorPrincipalVerHC {
 }
 
 /* --- Búsqueda por DNI --- */
-body.verHC .dniBusquedaVerHC   { width: 30%; }
+.verHC .dniBusquedaVerHC   { width: 30%; }
 
 /* --- Datos del paciente: grid 4 × n --- */
 #formularioPacienteCargadoVerHC {
@@ -302,7 +302,7 @@ body.verHC .dniBusquedaVerHC   { width: 30%; }
 
 /* INDICACION MEDICA */
 
-body.indicacionMedica {
+.indicacionMedica {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -313,7 +313,7 @@ body.indicacionMedica {
 }
 
 /* separa main de header/footer */
-body.indicacionMedica .contenedorPrincipalIndicacionMedica {
+.indicacionMedica .contenedorPrincipalIndicacionMedica {
   flex: 1;                      /* empuja el footer al fondo */
   margin-block: 2rem;           /* aire arriba y abajo */
   width: 100%;
@@ -342,11 +342,11 @@ body.indicacionMedica .contenedorPrincipalIndicacionMedica {
 }
 
 /* --- Mensajes de estado -------------------------------------- */
-body.indicacionMedica .mensajeError  { visibility: hidden; }
-body.indicacionMedica .mensajeError.activo { visibility: visible; color:red; }
+.indicacionMedica .mensajeError  { visibility: hidden; }
+.indicacionMedica .mensajeError.activo { visibility: visible; color:red; }
 
 /* ─────────── Mis Pacientes ─────────── */
-body.misPacientes {
+.misPacientes {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -354,7 +354,7 @@ body.misPacientes {
   background: #f2f6ff;
 }
 
-body.misPacientes main.centrado {
+.misPacientes main.centrado {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -389,7 +389,7 @@ body.misPacientes main.centrado {
 }
 
 /* ────────── Recetas Electrónicas ────────── */
-body.recetasElectronicas {
+.recetasElectronicas {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -398,7 +398,7 @@ body.recetasElectronicas {
   header { width:100%; }
 }
 
-body.recetasElectronicas main.centrado {
+.recetasElectronicas main.centrado {
   flex: 1;
   display: flex;
   justify-content: center;

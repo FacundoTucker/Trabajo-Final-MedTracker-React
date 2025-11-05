@@ -1,39 +1,57 @@
-export default function FormularioPaciente({ paciente }) {
+import "../styles/carga.css";
+
+export default function FormularioPaciente({ paciente = {}, editable = false }) {
   return (
-    <div className="contenedorDatos">
-      <h3>Información del Paciente</h3>
-      <form>
-        <label>Nombre:</label>
-        <input type="text" value={paciente.nombre} readOnly />
+    <form className="formularioPaciente">
+      <label htmlFor="nombreCargado">Nombre:</label>
+      <input
+        type="text"
+        id="nombreCargado"
+        value={paciente.nombre || ""}
+        readOnly={!editable}
+      />
 
-        <label>Apellido:</label>
-        <input type="text" value={paciente.apellido} readOnly />
+      <label htmlFor="apellidoCargado">Apellido:</label>
+      <input
+        type="text"
+        id="apellidoCargado"
+        value={paciente.apellido || ""}
+        readOnly={!editable}
+      />
 
-        <label>DNI:</label>
-        <input type="text" value={paciente.numeroDocumento} readOnly />
+      <label htmlFor="dniCargado">DNI:</label>
+      <input
+        type="text"
+        id="dniCargado"
+        value={paciente.numeroDocumento || ""}
+        readOnly={!editable}
+      />
 
-        <label>Fecha de Nacimiento:</label>
-        <input type="date" value={paciente.fechaNacimiento} readOnly />
+      <label htmlFor="fechaNacimientoCargada">Fecha de Nacimiento:</label>
+      <input
+        type="date"
+        id="fechaNacimientoCargada"
+        value={paciente.fechaNacimiento || ""}
+        readOnly={!editable}
+      />
 
-        <label>N° de Teléfono:</label>
-        <input type="tel" value={paciente.telefono} readOnly />
+      <label htmlFor="telefonoCargado">Teléfono:</label>
+      <input
+        type="tel"
+        id="telefonoCargado"
+        value={paciente.telefono || ""}
+        readOnly={!editable}
+      />
 
-        <label>Domicilio:</label>
-        <input type="text" value={paciente.domicilio} readOnly />
-
-        <div className="historiaGuardada">
-          <a
-            href={`../pages/indicacionMedica.html?dniCargado=${paciente.numeroDocumento}`}
-          >
-            📝 Indicaciones médicas
-          </a>
-          <a
-            href={`../pages/verHC.html?dniCargado=${paciente.numeroDocumento}`}
-          >
-            📝 Ver evolutivos previos
-          </a>
-        </div>
-      </form>
-    </div>
+      <label htmlFor="domicilioCargado">Domicilio:</label>
+      <input
+        type="text"
+        id="domicilioCargado"
+        value={paciente.domicilio || ""}
+        readOnly={!editable}
+      />
+      
+    </form>
+    
   );
 }
