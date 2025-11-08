@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/registroEspecialista.css";
+import "../styles/registro.css";
 import Swal from "sweetalert2";
 
 const FormEspecialista = () => {

@@ -47,7 +47,7 @@ const Login = () => {
         text: "Has ingresado como especialista",
         confirmButtonColor: "#00acdb",
       }).then(() => {
-        navigate("/home-especialista"); //cambia la ruta a HomeEspecialista
+        navigate("/carga-evolutivo"); //cambia la ruta a HomeEspecialista
       });
     } else {
       //mostrar mensaje de error
@@ -57,9 +57,9 @@ const Login = () => {
   };
 
   return (
-    <div className="contenedor">
-      <h2>INICIO DE SESIÓN</h2>
-      <form onSubmit={handleSubmit} id="loginForm">
+    <div className="contenedorLoginForm">
+      <h2 className="tituloForm">INICIO DE SESIÓN</h2>
+      <form onSubmit={handleSubmit} id="loginForm" className="loginForm">
         <label htmlFor="email">CORREO ELECTRÓNICO</label>
         <input ref={emailRef} type="email" id="email" placeholder="Ingrese su email"/>
 
