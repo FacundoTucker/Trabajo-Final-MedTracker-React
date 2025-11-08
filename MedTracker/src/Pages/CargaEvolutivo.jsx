@@ -1,7 +1,6 @@
 import CargarPaciente from "../components/CargaPaciente";
 import "../styles/carga.css";
 import { useState } from "react";
-
 import { Link } from "react-router-dom";
 import VerHC from "./VerHc";
 
@@ -20,6 +19,9 @@ const CargaEvolutivo = () => {
             <div className="historiaGuardada">
               <Link to={`/verhc/${paciente.numeroDocumento}`}>
                 📄 Ver Historia Clínica
+              </Link>
+              <Link to={`/indicacion/${paciente.numeroDocumento}`}>
+                🩺 Nueva indicación médica
               </Link>
             </div>
             
