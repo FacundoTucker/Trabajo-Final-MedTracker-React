@@ -10,7 +10,7 @@
     background-color: white;
 }
 
-.contenedorForm {
+.contenedorFormRegistro {
     width: 40%;
     padding: 25px 20px;
     display: flex;
@@ -66,52 +66,36 @@
     background-color: #008bb5;
 }
 
-.contenedorRegistro.mostrarMensajeError {
+.contenedorRegistro .mostrarMensajeError {
     visibility: visible;
     color: red;
     font-size: 12px
 }
 
-.contenedorRegistro.mensajeError {
+.contenedorRegistro .mensajeError {
     visibility: hidden;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.imagenLateral {
+.imagenLateralRegistro {
     width: 60%;
     height: 100%;
 }
 
-.imagenLateral img {
+.imagenLateralRegistro img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.contenedorForm a {
+.contenedorFormRegistro a {
   font-size: 13px;
   text-align: center;
   color: #00acdb;
   text-decoration: none;
 }
 
-.contenedorForm a:hover {
+.contenedorFormRegistro a:hover {
   text-decoration: underline;
-}
-
-.documentoContainer {
-    display: flex;
-    gap: 10px;
-}
-
-.documentoContainer select,
-.documentoContainer input {
-    flex: 1;
-    background-color: rgb(226, 226, 226);
-    border: none;
-    border-radius: 15px;
-    height: 25px;
-    padding: 0 8px;
-    font-size: 13px;
 }

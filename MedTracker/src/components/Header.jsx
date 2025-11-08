@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/registroEspecialista.css";
+import "../styles/registro.css";
 
 const Header = () => {
   return (
