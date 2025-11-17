@@ -20,10 +20,22 @@ const FormEspecialista = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const mostrarError = (mensaje) => {
+    mensajeError.current.textContent = mensaje;
+    mensajeError.current.classList.remove("mensajeError");
+    mensajeError.current.classList.add("mostrarMensajeError");
+  };
+
+  const validarContraseña = (pass) => {
+    if (pass.length < 7) return false;
+    const tieneMayuscula = /[A-Z]/.test(pass);
+    const tieneNumero = /\d/.test(pass);
+    return tieneMayuscula && tieneNumero;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //obtenemos valores de los inputs
     const datos = {
       nombre: nombre.current.value.trim(),
       apellido: apellido.current.value.trim(),
@@ -38,13 +50,11 @@ const FormEspecialista = () => {
       contraseñaRepetida: contraseñaRepetida.current.value,
     };
 
-    //verificaciones
     for (let key in datos) {
       if (!datos[key]) {
         mostrarError("⚠ Asegúrese de completar todos los campos correctamente.");
         return;
-      }
-    }
+    }}
     if (datos.contraseña !== datos.contraseñaRepetida) {
       mostrarError("⚠ Las contraseñas no coinciden.");
       return;
@@ -54,70 +64,48 @@ const FormEspecialista = () => {
       return;
     }
 
-    //traemos los arrays del localstorage
-    const pacientesGuardados = JSON.parse(localStorage.getItem("pacientesDePrueba")) || [];
-    const especialistasGuardados = JSON.parse(localStorage.getItem("especialistasDePrueba")) || [];
+    const especialistaParaBack = {
+    nombre: datos.nombre,
+    apellido: datos.apellido,
+    fechaNacimiento: datos.fechaNacimiento,
+    DNI: Number(datos.numeroDocumento),
+    domicilio: datos.domicilio,
+    correoElectronico: datos.email,
+    nroTelefono: Number(datos.telefono),
+    especialidad: datos.especialidad,
+    nroMatricula: datos.matricula,
+    contraseña: datos.contraseña,
+};
 
-    //validamos que no se repitan ni email ni nro doc
-    const existePaciente = pacientesGuardados.some(
-      (p) =>
-        p.email.toLowerCase() === datos.email.toLowerCase() ||
-        p.numeroDocumento === datos.numeroDocumento
-    );
 
-    const existeEspecialista = especialistasGuardados.some(
-      (e) =>
-        e.email.toLowerCase() === datos.email.toLowerCase() ||
-        e.numeroDocumento === datos.numeroDocumento
-    );
+    try {
+      const response = await fetch("http://localhost:3000/especialista", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(especialistaParaBack),
+      });
 
-    if (existeEspecialista || existePaciente) {
-      mostrarError("⚠ Ya existe un usuario con ese email o documento.");
-      return;
-    }
+      if (!response.ok) {
+        const error = await response.json();
+        mostrarError(error.message || "Error al registrar el especialista");
+        return;
+      }
 
-    //crear nuevo especialista
-    const nuevoEspecialista = {
-      nombre: datos.nombre,
-      apellido: datos.apellido,
-      fechaNacimiento: datos.fechaNacimiento,
-      numeroDocumento: datos.numeroDocumento,
-      domicilio: datos.domicilio,
-      email: datos.email,
-      telefono: datos.telefono,
-      matricula: datos.matricula,
-      especialidad: datos.especialidad,
-      contraseña: datos.contraseña,
-    };
-
-    //guarda en localStorage
-    especialistasGuardados.push(nuevoEspecialista);
-    localStorage.setItem("especialistasDePrueba", JSON.stringify(especialistasGuardados));
-
-    Swal.fire({
+      Swal.fire({
         icon: "success",
         title: "Registro exitoso",
         text: "✔ Tu especialista ha sido registrado correctamente",
         confirmButtonColor: "#00acdb",
-    }   ).then(() => {
-    navigate("/login"); // redirige a login después de cerrar el modal
-    });
-    e.target.reset();
-  };
+      }).then(() => {
+        navigate("/login");
+      });
 
-  //dispara y mjestra el error
-  const mostrarError = (mensaje) => {
-    mensajeError.current.textContent = mensaje;
-    mensajeError.current.classList.remove("mensajeError");
-    mensajeError.current.classList.add("mostrarMensajeError");
-  };
+      e.target.reset();
 
-  //validacion de la contraseña
-  const validarContraseña = (pass) => {
-    if (pass.length < 7) return false;
-    const tieneMayuscula = /[A-Z]/.test(pass);
-    const tieneNumero = /\d/.test(pass);
-    return tieneMayuscula && tieneNumero;
+    } catch (err) {
+      console.error(err);
+      mostrarError("⚠ Error conectando con el servidor.");
+    }
   };
 
   return (
@@ -163,7 +151,7 @@ const FormEspecialista = () => {
       <button type="submit">REGISTRARSE</button>
     </form>
   );
-};
+}
 
 export default FormEspecialista;
 

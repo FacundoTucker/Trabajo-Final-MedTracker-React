@@ -18,86 +18,78 @@ const FormPaciente = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    //obtenemos valores de los inputs
-    const datos = {
-      nombre: nombre.current.value.trim(),
-      apellido: apellido.current.value.trim(),
-      fechaNacimiento: fechaNacimiento.current.value.trim(),
-      numeroDocumento: numeroDocumento.current.value.trim(),
-      domicilio: domicilio.current.value.trim(),
-      email: email.current.value.trim(),
-      telefono: telefono.current.value.trim(),
-      contraseña: contraseña.current.value,
-      contraseñaRepetida: contraseñaRepetida.current.value,
-    };
+  const datos = {
+    nombre: nombre.current.value.trim(),
+    apellido: apellido.current.value.trim(),
+    fechaNacimiento: fechaNacimiento.current.value.trim(),
+    numeroDocumento: numeroDocumento.current.value.trim(),
+    domicilio: domicilio.current.value.trim(),
+    email: email.current.value.trim(),
+    telefono: telefono.current.value.trim(),
+    contraseña: contraseña.current.value,
+    contraseñaRepetida: contraseñaRepetida.current.value,
+  };
 
-    //verificaciones
-    for (let key in datos) {
-      if (!datos[key]) {
-        mostrarError("⚠ Asegúrese de completar todos los campos correctamente.");
-        return;
-      }
-    }
-    if (datos.contraseña !== datos.contraseñaRepetida) {
-      mostrarError("⚠ Las contraseñas no coinciden.");
+  for (let key in datos) {
+    if (!datos[key]) {
+      mostrarError("⚠ Asegúrese de completar todos los campos correctamente.");
       return;
     }
-    if (!validarContraseña(datos.contraseña)) {
-      mostrarError("⚠ La contraseña debe tener al menos 7 caracteres, una mayúscula y un número.");
+  }
+
+  if (datos.contraseña !== datos.contraseñaRepetida) {
+    mostrarError("⚠ Las contraseñas no coinciden.");
+    return;
+  }
+
+  if (!validarContraseña(datos.contraseña)) {
+    mostrarError("⚠ La contraseña debe tener al menos 7 caracteres, una mayúscula y un número.");
+    return;
+  }
+
+  const pacienteParaBack = {
+    nombre: datos.nombre,
+    apellido: datos.apellido,
+    fechaNacimiento: datos.fechaNacimiento,
+    DNI: Number(datos.numeroDocumento),
+    domicilio: datos.domicilio,
+    correoElectronico: datos.email,
+    nroTelefono: Number(datos.telefono),
+    contraseña: datos.contraseña,
+  };
+
+  try {
+    const response = await fetch("http://localhost:3000/paciente", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pacienteParaBack),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      mostrarError(error.message || "Error al registrar el paciente");
       return;
     }
-
-    //traemos los arrays del localstorage
-    const pacientesGuardados = JSON.parse(localStorage.getItem("pacientesDePrueba")) || [];
-    const especialistasGuardados = JSON.parse(localStorage.getItem("especialistasDePrueba")) || [];
-
-    //validamos que no se repitan ni email ni nro doc
-    const existePaciente = pacientesGuardados.some(
-      (p) =>
-        p.email.toLowerCase() === datos.email.toLowerCase() ||
-        p.numeroDocumento === datos.numeroDocumento
-    );
-
-    const existeEspecialista = especialistasGuardados.some(
-      (e) =>
-        e.email.toLowerCase() === datos.email.toLowerCase() ||
-        e.numeroDocumento === datos.numeroDocumento
-    );
-
-    if (existeEspecialista || existePaciente) {
-      mostrarError("⚠ Ya existe un usuario con ese email o documento.");
-      return;
-    }
-
-    //crear nuevo paciente
-    const nuevoPaciente = {
-      nombre: datos.nombre,
-      apellido: datos.apellido,
-      fechaNacimiento: datos.fechaNacimiento,
-      numeroDocumento: datos.numeroDocumento,
-      domicilio: datos.domicilio,
-      email: datos.email,
-      telefono: datos.telefono,
-      contraseña: datos.contraseña,
-    };
-
-    //guarda en localStorage
-    pacientesGuardados.push(nuevoPaciente);
-    localStorage.setItem("pacientesDePrueba", JSON.stringify(pacientesGuardados));
 
     Swal.fire({
-        icon: "success",
-        title: "Registro exitoso",
-        text: "✔ Tu paciente ha sido registrado correctamente",
-        confirmButtonColor: "#00acdb",
-    }   ).then(() => {
-    navigate("/login"); // redirige a login después de cerrar el modal
+      icon: "success",
+      title: "Registro exitoso",
+      text: "✔ El paciente ha sido registrado correctamente",
+      confirmButtonColor: "#00acdb",
+    }).then(() => {
+      navigate("/login");
     });
+
     e.target.reset();
-  };
+
+  } catch (err) {
+    console.error(err);
+    mostrarError("⚠ Error conectando con el servidor.");
+  }
+};
 
   //dispara y mjestra el error
   const mostrarError = (mensaje) => {

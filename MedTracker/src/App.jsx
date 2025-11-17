@@ -17,11 +17,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro-especialista" element={<RegistroEspecialista />} />
           <Route path="/registro-paciente" element={<RegistroPaciente />} />
-          <Route path="/carga-evolutivo" element={<CargaEvolutivo />} />
           <Route path="/verhc/:dniCargado" element={<VerHC />} />
           <Route path="/indicacion/:dniCargado" element={<IndicacionMedica />} />
-
-
+          <Route path="/carga-evolutivo" element={<CargaEvolutivo/>} />
         </Routes>
       </main>
       <Footer />

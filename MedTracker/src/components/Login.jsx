@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../styles/login.css";
@@ -6,67 +6,69 @@ import "../styles/login.css";
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const mensajeError = useRef();
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const email = emailRef.current.value.trim();
-    const password = passwordRef.current.value.trim();
+    const correoElectronico = emailRef.current.value.trim();
+    const contraseña = passwordRef.current.value.trim();
 
-    // cargar usuarios desde el localstorage
-    const pacientes = JSON.parse(localStorage.getItem("pacientesDePrueba")) || [];
-    const especialistas = JSON.parse(localStorage.getItem("especialistasDePrueba")) || [];
+    if (!correoElectronico || !contraseña) {
+      setError("⚠ Complete todos los campos");
+      return;
+    }
 
-    //buscar por paciente
-    const pacienteEncontrado = pacientes.find(
-      (p) => p.email === email && p.contraseña === password
-    );
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ correoElectronico, contraseña }),
+      });
 
-    //buscar por especialista
-    const especialistaEncontrado = especialistas.find(
-      (e) => e.email === email && e.contraseña === password
-    );
+      if (!response.ok) {
+        setError("⚠ Credenciales incorrectas");
+        return;
+      }
 
-    if (pacienteEncontrado) {
-      localStorage.setItem("pacienteActivo", JSON.stringify({ tipo: "paciente", email }));
+      const data = await response.json();
+
+      //guardamos el usuario activo segun su tipo
+      localStorage.setItem("usuarioActivo", JSON.stringify(data));
+
       Swal.fire({
         icon: "success",
         title: "¡Inicio de sesión exitoso!",
-        text: "Has ingresado como paciente",
+        text: `Ingresaste como ${data.tipo}`,
         confirmButtonColor: "#00acdb",
       }).then(() => {
-        navigate("/home-paciente"); //cambia la ruta a HomePaciente
+        if (data.tipo === "paciente") {
+          navigate("/home-paciente");
+        } else {
+          navigate("/carga-evolutivo"); // home del especialista
+        }
       });
-    } else if (especialistaEncontrado) {
-      localStorage.setItem("especialistaActivo", JSON.stringify({ tipo: "especialista", email }));
-      Swal.fire({
-        icon: "success",
-        title: "¡Inicio de sesión exitoso!",
-        text: "Has ingresado como especialista",
-        confirmButtonColor: "#00acdb",
-      }).then(() => {
-        navigate("/carga-evolutivo"); //cambia la ruta a HomeEspecialista
-      });
-    } else {
-      //mostrar mensaje de error
-      mensajeError.current.classList.remove("mensajeError");
-      mensajeError.current.classList.add("mostrarMensajeError");
+    } catch (error) {
+      console.error("Error al conectar con el servidor:", error);
+      setError("⚠ Error al conectar con el servidor");
     }
   };
 
   return (
     <div className="contenedorLoginForm">
       <h2 className="tituloForm">INICIO DE SESIÓN</h2>
+
       <form onSubmit={handleSubmit} id="loginForm" className="loginForm">
         <label htmlFor="email">CORREO ELECTRÓNICO</label>
-        <input ref={emailRef} type="email" id="email" placeholder="Ingrese su email"/>
+        <input ref={emailRef} type="email" id="email" placeholder="Ingrese su email" />
 
         <label htmlFor="password">CONTRASEÑA</label>
-        <input ref={passwordRef} type="password" id="password" placeholder="Ingrese su contraseña"/>
+        <input ref={passwordRef} type="password" id="password" placeholder="Ingrese su contraseña" />
 
-        <p ref={mensajeError} id="mensajeError" className="mensajeError">⚠ Credenciales Incorrectas</p>
+        {error && <p className="mostrarMensajeError">{error}</p>}
 
         <Link to="/recuperar-contraseña">¿Has olvidado la contraseña?</Link>
 
@@ -77,3 +79,4 @@ const Login = () => {
 };
 
 export default Login;
+
