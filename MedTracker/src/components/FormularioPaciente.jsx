@@ -2,56 +2,58 @@ import "../styles/carga.css";
 
 export default function FormularioPaciente({ paciente = {}, editable = false }) {
   return (
-    <form className="formularioPaciente">
-      <label htmlFor="nombreCargado">Nombre:</label>
-      <input
-        type="text"
-        id="nombreCargado"
-        value={paciente.nombre || ""}
-        readOnly={!editable}
-      />
+    <form className="formularioPaciente formDosColumnas">
 
-      <label htmlFor="apellidoCargado">Apellido:</label>
-      <input
-        type="text"
-        id="apellidoCargado"
-        value={paciente.apellido || ""}
-        readOnly={!editable}
-      />
+        {/* Fila 1 */}
+        <div>
+          <label>Nombre y Apellido:</label>
+          <input
+            type="text"
+            value={`${paciente.nombre || ""} ${paciente.apellido || ""}`}
+            readOnly={!editable}
+          />
+        </div>
 
-      <label htmlFor="dniCargado">DNI:</label>
-      <input
-        type="text"
-        id="dniCargado"
-        value={paciente.numeroDocumento || ""}
-        readOnly={!editable}
-      />
+        <div>
+          <label>DNI:</label>
+          <input
+            type="text"
+            value={paciente.numeroDocumento || ""}
+            readOnly={!editable}
+          />
+        </div>
 
-      <label htmlFor="fechaNacimientoCargada">Fecha de Nacimiento:</label>
-      <input
-        type="date"
-        id="fechaNacimientoCargada"
-        value={paciente.fechaNacimiento || ""}
-        readOnly={!editable}
-      />
+        {/* Fila 2 */}
+        <div>
+          <label>Fecha de Nacimiento:</label>
+          <input
+            type="date"
+            value={paciente.fechaNacimiento || ""}
+            readOnly={!editable}
+          />
+        </div>
 
-      <label htmlFor="telefonoCargado">Teléfono:</label>
-      <input
-        type="tel"
-        id="telefonoCargado"
-        value={paciente.telefono || ""}
-        readOnly={!editable}
-      />
+        <div>
+          <label>Teléfono:</label>
+          <input
+            type="tel"
+            value={paciente.telefono || ""}
+            readOnly={!editable}
+          />
+        </div>
 
-      <label htmlFor="domicilioCargado">Domicilio:</label>
-      <input
-        type="text"
-        id="domicilioCargado"
-        value={paciente.domicilio || ""}
-        readOnly={!editable}
-      />
-      
-    </form>
+        {/* Fila 3  */}
+        <div className="columnaCompleta">
+          <label>Domicilio:</label>
+          <input
+            type="text"
+            value={paciente.domicilio || ""}
+            readOnly={!editable}
+          />
+        </div>
+
+</form>
+
     
   );
 }

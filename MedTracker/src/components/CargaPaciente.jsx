@@ -53,7 +53,7 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
           onChange={(e) => setDniBusqueda(e.target.value)}
           placeholder="Ej: 12345678"
         />
-        <button onClick={handleBuscar}>Cargar Datos</button>
+        <button className="btnChico" onClick={handleBuscar}>Cargar Datos</button>
 
         {mensaje.texto && (
           <div className={`mensajeEstado ${mensaje.tipo}`}>{mensaje.texto}</div>
@@ -67,12 +67,7 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
 }
 
       <hr />
-      <div className="fechaCarga">
-        <h5>FECHA</h5>
-        <input type="date" />
-        <h5>HORA</h5>
-        <input type="time" />
-      </div>
+    
     </div>
   );
 }
