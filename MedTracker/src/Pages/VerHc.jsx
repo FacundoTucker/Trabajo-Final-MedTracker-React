@@ -5,7 +5,7 @@ import "../styles/carga.css";
 
 export default function VerHC() {
   const [paciente, setPaciente] = useState(null);
-  const { dniCargado } = useParams(); // ✅ obtenemos el parámetro de la URL
+  const { dniCargado } = useParams(); // obtenemos el parámetro de la URL
 
   useEffect(() => {
     if (!dniCargado) return;
@@ -22,7 +22,6 @@ export default function VerHC() {
   }, [dniCargado]);
 
   return (
-    <main className="verHC">
       <div className="contenedorPrincipalVerHC">
         <div className="contenedorDatosVerHC">
           {paciente ? (
@@ -49,6 +48,5 @@ export default function VerHC() {
           </p>
         </div>
       </div>
-    </main>
   );
 }
