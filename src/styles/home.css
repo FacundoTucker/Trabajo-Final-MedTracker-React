@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+  body {
+  background:url("/img/fondo.jpg") center/cover fixed no-repeat;
+  min-height:100vh;
+  text-align: center;
+}
+/* --- HEADER --- */
+header {
+  height:90px;
+  width: 100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 1.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom:1px solid #E3E3E3;
+}
+.header{
+  height: 60vh !important; /*no afecta a esta parte */
+  background: url(/img/medicoypaciente.jpg) no-repeat center;
+  background-size: cover;
+}
+.titulo{
+  margin-bottom: 40px;
+  font-size: 60px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+p{
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+.btn{
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 40px;
+  border: 2px solid black;
+  color: #fff;
+  background-color: #00ACDB;
+}
+.btn:hover{
+  background: none;
+}
+.btn-saber{
+  display: flex;
+}
+.btn-saber a{
+  margin: 0px 10px;
+}
+.content {
+  display: flex;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+img{
+  width: 935px;
+  height: 450px;
+  padding: 0%;
+  margin: 0;
+}
+.medTracker {
+    font-size: 32px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #00ACDB;
+    font-family: 'Arial Black', sans-serif;
+    padding-left: 21px;
+}
+button{
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  background: #00ACDB;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover{
+  background:var(--primary-dark);
+  background: #008BB5;
+}
+/* Menu desplegable de boton REGISTRO */
+.dropdown{
+  position:relative;
+  display:inline-block}
+.dropdown-menu{
+  position:absolute;top:110%;left:0;width:140px;z-index:1000;
+  display:flex;flex-direction:column;
+  background:#fff;border:1px solid #ccc;border-radius:6px;
+  box-shadow:0 3px 6px rgba(0,0,0,.15)
+}
+.dropdown-menu button{
+  all:unset;
+  padding:.6rem 1rem;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--link);
+  border-bottom:1px solid #eee
+}
+.dropdown-menu button:last-child{border-bottom:none}
+.dropdown-menu button:hover{background:#f0f8ff}
+.hidden{display:none}
+/* -------- FOOTER -------- */
+footer.footer {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #F5F5F5;
+  font-size: 0.95rem;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+.footer-section h4 {
+  margin-bottom: 0.7rem;
+  font-size: 1.15rem;
+  color: #00ACDB;
+}
+.footer-section p,
+.footer-section ul {
+  line-height: 1.6;
+}
+.footer-section ul {
+  list-style: none;
+}
+.footer-section ul li a {
+  color: #F5F5F5;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.footer-section ul li a:hover {
+  opacity: 0.75;
+}
+.footer-section.social a {
+  font-size: 1.3rem;
+  margin-right: 0.8rem;
+  color: #F5F5F5;
+  transition: transform 0.3s;
+}
+.footer-section.social a:hover {
+  transform: scale(1.15);
+}
+.footer-copy {
+  background-color: rgba(0, 0, 0, 0.92);
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+}
