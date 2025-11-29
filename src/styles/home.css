@@ -2,10 +2,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
 }
-  body {
-  background:url("/img/fondo.jpg") center/cover fixed no-repeat;
+body {
+  background:url("../img/fondo.jpg") center/cover fixed no-repeat;
   min-height:100vh;
   text-align: center;
 }
@@ -20,10 +20,11 @@ header {
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-bottom:1px solid #E3E3E3;
+  margin-bottom: 100px;
 }
 .header{
   height: 60vh !important; /*no afecta a esta parte */
-  background: url(/img/medicoypaciente.jpg) no-repeat center;
+  background: url(/medicoypaciente.jpg) no-repeat center;
   background-size: cover;
 }
 .titulo{
@@ -32,7 +33,17 @@ header {
   font-weight: 600;
   text-transform: uppercase;
 }
-p{
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #00acdb;
+  font-family: 'Arial Black', sans-serif;
+  padding-left: 20px;
+}
+
+.contenedor p{
   margin-bottom: 40px;
   font-size: 18px;
 }
@@ -40,7 +51,6 @@ p{
   display: inline-block;
   margin-top: 15px;
   padding: 10px 40px;
-  border: 2px solid black;
   color: #fff;
   background-color: #00ACDB;
 }
@@ -111,54 +121,62 @@ button:hover{
 .dropdown-menu button:last-child{border-bottom:none}
 .dropdown-menu button:hover{background:#f0f8ff}
 .hidden{display:none}
-/* -------- FOOTER -------- */
-footer.footer {
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #F5F5F5;
-  font-size: 0.95rem;
-}
-.footer-container {
+
+/* --- MAIN --- */
+main.contenedor {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem;
+}
+
+.contenedorUno,
+.contenedorDos {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
-  justify-content: space-evenly;
+  margin-bottom: 3rem;
 }
-.footer-section h4 {
-  margin-bottom: 0.7rem;
-  font-size: 1.15rem;
-  color: #00ACDB;
+
+.contenedorUno img,
+.contenedorDos img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.footer-section p,
-.footer-section ul {
+
+.contenedorUno h2,
+.contenedorDos h3 {
+  max-width: 500px;
   line-height: 1.6;
+  font-weight: 400;
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-.footer-section ul {
-  list-style: none;
-}
-.footer-section ul li a {
-  color: #F5F5F5;
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-.footer-section ul li a:hover {
-  opacity: 0.75;
-}
-.footer-section.social a {
-  font-size: 1.3rem;
-  margin-right: 0.8rem;
-  color: #F5F5F5;
-  transition: transform 0.3s;
-}
-.footer-section.social a:hover {
-  transform: scale(1.15);
-}
-.footer-copy {
-  background-color: rgba(0, 0, 0, 0.92);
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 0.85rem;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

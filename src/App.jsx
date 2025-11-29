@@ -7,13 +7,18 @@ import RegistroPaciente from "./components/RegistroPaciente";
 import CargaEvolutivo from "./Pages/CargaEvolutivo";
 import VerHC from "./Pages/VerHc";
 import IndicacionMedica from "./Pages/IndicacionesMedicas";
+import Home from "./components/home";
+
 
 function App() {
   return (
+    
     <BrowserRouter>
+    <Home >
       <Header />
       <main>
         <Routes>
+           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro-especialista" element={<RegistroEspecialista />} />
           <Route path="/registro-paciente" element={<RegistroPaciente />} />
@@ -23,6 +28,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      </Home>
     </BrowserRouter>
   );
 }

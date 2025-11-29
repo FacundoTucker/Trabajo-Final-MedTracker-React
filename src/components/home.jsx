@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/home.css";
+import { Link } from "react-router-dom";
 import ImgMedicosPacientes from "../img/medicospacientes.jpg";
 import casaMedicina from "../img/casamedicina.jpg";
 
@@ -17,23 +18,27 @@ const Home = () => {
     <>
    
       <header>
-        <a href="#" className="medTracker">MEDTRACKER</a>
+        <Link to="/" className="medTracker">MEDTRACKER</Link>
+        
 
         <div className="acciones-header">
-          <button id="btn-login">INICIAR SESIÓN</button>
+          <Link to="/login">
+            <button id="btn-login">INICIAR SESIÓN</button>
+          </Link>
 
           <div className="dropdown">
             <button id="btn-register" onClick={toggleDropdown}>
               REGISTRARSE ▼
             </button>
-
+              {dropdownVisible && (
             <div
               id="dropdown-menu"
               className={`dropdown-menu ${dropdownVisible ? "" : "hidden"}`}
             >
-              <button id="reg-paciente">Paciente</button>
-              <button id="reg-especialista">Especialista</button>
+             <Link to="/registro-paciente"><button>Paciente</button></Link>
+              <Link to="/registro-especialista"><button>Especialista</button></Link>
             </div>
+            )}
           </div>
         </div>
       </header>
