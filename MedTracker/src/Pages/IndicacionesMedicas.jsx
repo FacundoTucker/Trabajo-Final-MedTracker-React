@@ -181,7 +181,7 @@ const convertirImagenABase64 = (url) => {
 
   return (
     <div className="contenedorPrincipal2">
-      <button onClick={imprimirDiv}>🖨️ Imprimir receta</button>
+      <button className="botonCarga" onClick={imprimirDiv}>🖨️ Imprimir receta</button>
       <hr />
 
       {/* RECETARIO */}
@@ -189,13 +189,13 @@ const convertirImagenABase64 = (url) => {
         style={{ backgroundImage: `url(${fondoRecetario})` }}> {paciente ? (
       <>
             {/* CAMPOS POSICIONADOS SOBRE EL FONDO */}
-      <label>Nombre y Apellido:</label>
+      <label className="labelCarga">Nombre y Apellido:</label>
       <input className="campoReceta campoNombre" type="text" readOnly
         value={`${paciente.nombre} ${paciente.apellido}`} />
-      <label>DNI:</label>
+      <label className="labelCarga">DNI:</label>
        <input className="campoReceta campoDni" type="text" readOnly
         value={paciente.numeroDocumento} />
-      <label>Domicilio:</label>
+      <label className="labelCarga">Domicilio:</label>
       <input className="campoReceta campoDomicilio" type="text" readOnly
         value={paciente.domicilio} />
 
@@ -207,7 +207,7 @@ const convertirImagenABase64 = (url) => {
         )}
       </div>
 
-      <button onClick={guardarIndicacion}>💾 GUARDAR INDICACIÓN</button>
+      <button className="botonCarga" onClick={guardarIndicacion}>💾 GUARDAR INDICACIÓN</button>
     </div>
   );
 }

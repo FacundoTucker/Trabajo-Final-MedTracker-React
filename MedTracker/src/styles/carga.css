@@ -1,20 +1,3 @@
-/*carga.css*/
-
-/* ==============================
-   ESTILOS GENERALES
-============================== */
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
-  padding: 0;
-}
-
-main {
-  padding: 20px;
-}
-
 /* ==============================
    CONTENEDORES 
 ============================== */
@@ -23,7 +6,7 @@ main {
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.contenedor,
+.contenedorCarga,
 .contenedorEvolutivo,
 .contenedorPrincipalVerHC {
   width: 90%;
@@ -74,7 +57,7 @@ main {
    TÍTULOS
 ============================== */
 
-h5, h3, h2 {
+.tituloCarga{
   margin-top: 0;
   text-align: center;
   color: #333;
@@ -84,13 +67,13 @@ h5, h3, h2 {
    FORMULARIOS
 ============================== */
 
-label {
+.labelCarga {
   font-weight: bold;
   display: block;
   margin: 10px 0 5px;
 }
 
-input, textarea, select {
+.variosCarga {
   padding: 10px;
   border: 1px solid #bbb;
   border-radius: 8px;
@@ -99,7 +82,7 @@ input, textarea, select {
   background-color: transparent;
 }
 
-textarea {
+.textareaCarga {
   min-height: 120px;
   resize: vertical;
 }
@@ -108,7 +91,7 @@ textarea {
    BOTONES
 ============================== */
 
-button {
+.botonCarga {
   width: 100%;
   padding: 12px;
   background: #0077cc;
@@ -121,7 +104,7 @@ button {
   transition: 0.2s;
 }
 
-button:hover {
+.botonCarga:hover {
   background: #005fa3;
 }
 
@@ -179,12 +162,14 @@ button:hover {
 .campoIndicacion.campoReceta {
   top: 290px;
   left: 60px;
-  width: 100%;
+  width: 500px;
   height: 350px;
   font-size: 20px;
   background: transparent !important; 
   padding: 100px 60px 30px 60px !important;
   color: #000;
+  border: none;
+  outline: none;
 }
 
 /* ==============================

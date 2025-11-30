@@ -8,10 +8,11 @@ import CargaEvolutivo from "./Pages/CargaEvolutivo";
 import VerHC from "./Pages/VerHc";
 import IndicacionMedica from "./Pages/IndicacionesMedicas";
 import Home from "./components/Home";
+import Contacto from "./components/Contacto";
+
 function App() {
   return (
     <BrowserRouter>
-    <Home >
       <Header />
       <main>
         <Routes>
@@ -22,10 +23,10 @@ function App() {
           <Route path="/verhc/:dniCargado" element={<VerHC />} />
           <Route path="/indicacion/:dniCargado" element={<IndicacionMedica />} />
           <Route path="/carga-evolutivo" element={<CargaEvolutivo/>} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
       </main>
       <Footer />
-      </Home>
     </BrowserRouter>
   );
 }

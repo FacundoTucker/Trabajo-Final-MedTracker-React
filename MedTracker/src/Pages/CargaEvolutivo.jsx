@@ -30,15 +30,15 @@ const CargaEvolutivo = () => {
 
           )}
           <div className="fechaCarga">
-            <h5>FECHA</h5>
-            <h5>HORA</h5>
-              <input type="date" />            
-              <input type="time" />
+            <h5 className="tituloCarga">FECHA</h5>
+            <h5 className="tituloCarga">HORA</h5>
+              <input className="variosCarga" type="date" />            
+              <input className="variosCarga" type="time" />
           </div>
           
       <div className="contenedorEvolutivo">
-        <h5>EVOLUTIVO</h5>
-        <textarea placeholder="Ingrese el evolutivo del paciente"></textarea>
+        <h5 className="tituloCarga">EVOLUTIVO</h5>
+        <textarea className="textareaCarga" placeholder="Ingrese el evolutivo del paciente"></textarea>
         <button className="btnChico">Grabar</button>
       </div>
       </div>

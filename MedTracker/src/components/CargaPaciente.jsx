@@ -45,9 +45,10 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
   return (
     <div className="contenedorPrincipal">
       <div className="dniBusqueda">
-        <h2>Carga evolutivo</h2>
-        <label>Ingresa un DNI registrado.</label>
+        <h2 className="tituloCarga">Carga evolutivo</h2>
+        <label className="labelCarga">Ingresa un DNI registrado.</label>
         <input
+        className="variosCarga"
           type="text"
           value={dniBusqueda}
           onChange={(e) => setDniBusqueda(e.target.value)}

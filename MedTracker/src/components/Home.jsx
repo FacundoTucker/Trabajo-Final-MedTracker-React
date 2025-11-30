@@ -11,32 +11,29 @@ const Home = () => {
   };
   return (
     <>
-      <header>
-        <Link to="/" className="medTracker">MEDTRACKER</Link>
-        <div className="acciones-header">
-          <Link to="/login">
-            <button id="btn-login">INICIAR SESIÓN</button>
-          </Link>
-          <div className="dropdown">
-            <button id="btn-register" onClick={toggleDropdown}>
-              REGISTRARSE ▼
-            </button>
-              {dropdownVisible && (
-            <div
-              id="dropdown-menu"
-              className={`dropdown-menu ${dropdownVisible ? "" : "hidden"}`}
-            >
-             <Link to="/registro-paciente"><button>Paciente</button></Link>
-              <Link to="/registro-especialista"><button>Especialista</button></Link>
-            </div>
-            )}
-          </div>
-        </div>
-      </header>
-      <main className="contenedor">
-        <div className="titulo"></div>
+      <main className="contenedorHome">
+        <div className="acciones-home">
+  <Link to="/login">
+    <button id="btn-login">INICIAR SESIÓN</button>
+  </Link>
+
+  <div className="dropdown">
+    <button id="btn-register" onClick={toggleDropdown}>
+      REGISTRARSE ▼
+    </button>
+
+    {dropdownVisible && (
+      <div id="dropdown-menu" className="dropdown-menu">
+        <Link to="/registro-paciente" className="dropdown-item">Paciente</Link>
+        <Link to="/registro-especialista" className="dropdown-item">Especialista</Link>
+      </div>
+    )}
+  </div>
+</div>
+
+
         <div className="contenedorUno">
-          <img src={ImgMedicosPacientes} alt="Imagen medico y pacientes"
+          <img className="imgHome" src={ImgMedicosPacientes} alt="Imagen medico y pacientes"
           width="760"
            />
           <h2>
@@ -48,7 +45,7 @@ const Home = () => {
           </h2>
         </div>
         <div className="contenedorDos">
-          <img src={casaMedicina} alt="imagen de casa relacion a medicina"
+          <img className="imgHome" src={casaMedicina} alt="imagen de casa relacion a medicina"
             width="500"
           />
           <h3>
@@ -60,39 +57,6 @@ const Home = () => {
           </h3>
         </div>
       </main>
-      <footer className="footer">
-        <div className="footer-container">
-          <section className="footer-section about">
-            <h4>MedTracker</h4>
-            <p>
-              Software de gestión médica pensado para clínicas, profesionales y
-              pacientes.
-            </p>
-          </section>
-          <section className="footer-section links">
-            <h4>Navegación</h4>
-            <ul>
-              <li><a href="home.html">Inicio</a></li>
-              <li><a href="contacto.html">Contacto</a></li>
-              <li><a href="#">Preguntas frecuentes</a></li>
-            </ul>
-          </section>
-          <section className="footer-section contact">
-            <h4>Contacto</h4>
-            <p><i className="fas fa-envelope"></i> info@medtracker.com</p>
-            <p><i className="fas fa-phone"></i> +54 9 11 1234-5678</p>
-          </section>
-          <section className="footer-section social">
-            <h4>Seguinos</h4>
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-linkedin-in"></i></a>
-          </section>
-        </div>
-        <div className="footer-copy">
-          © 2025 MedTracker. Todos los derechos reservados.
-        </div>
-      </footer>
     </>
   );
 };
