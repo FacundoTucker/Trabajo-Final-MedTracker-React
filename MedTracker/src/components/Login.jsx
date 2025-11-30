@@ -35,6 +35,8 @@ const Login = () => {
       }
 
       const data = await response.json();
+      console.log("DATA LOGIN:", data);
+
 
       //guardamos el usuario activo segun su tipo
       localStorage.setItem("usuarioActivo", JSON.stringify(data));

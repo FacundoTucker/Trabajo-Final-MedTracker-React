@@ -1,0 +1,116 @@
+/* CONTENEDOR GENERAL */
+.turnos-especialista-container {
+  padding: 20px;
+}
+
+/* GRID DE 3 COLUMNAS */
+.lista-turnos-esp {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* CARD DEL TURNO */
+.item-turno-esp {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-left: 10px solid transparent;
+  transition: 0.2s ease;
+}
+
+/* INFORMACIÓN */
+.turno-info {
+  margin-bottom: 10px;
+}
+
+/* COLORES SEGÚN ESTADO */
+.estado-pendiente {
+  background: #fff8db;
+  border-left-color: #f1c40f;
+}
+
+.estado-confirmado {
+  background: #e9f7ef;
+  border-left-color: #2ecc71;
+}
+
+.estado-rechazado {
+  background: #fdecea;
+  border-left-color: #e74c3c;
+}
+
+.estado-reservado {
+  background: #e8f4fd;
+  border-left-color: #3498db;
+}
+
+/* BOTONES */
+.btn-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-confirmar {
+  background-color: #2ecc71;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-confirmar:hover {
+  background-color: #27ae60;
+}
+
+.btn-rechazar {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-rechazar:hover {
+  background-color: #c0392b;
+}
+
+.lista-turnos-esp {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* siempre 3 columnas */
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.item-turno-esp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* para que los botones queden abajo */
+}
+.turnos-especialista-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 60px); /* 60px = altura aproximada del navbar */
+  padding: 20px;
+}
+
+/* Contenido de los turnos que crece */
+.lista-turnos-esp {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 1; /* ocupa el espacio disponible */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

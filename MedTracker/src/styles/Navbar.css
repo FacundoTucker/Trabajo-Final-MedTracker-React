@@ -1,0 +1,41 @@
+.navbar {
+  background: #1976d2;
+  padding: 10px 20px;
+}
+
+.navbar-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.saludo-navbar {
+  margin-left: auto; /* empuja el saludo y logout hacia la derecha */
+  font-weight: 500;
+  color: #333;
+}
+
+
+.navbar-list li a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navbar-list li a:hover {
+  text-decoration: underline;
+}
+
+.logout-btn {
+  margin-left: auto;
+  color: #ffcccc;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  color: white;
+}

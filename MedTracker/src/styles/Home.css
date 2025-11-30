@@ -1,0 +1,858 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+body {
+  background:url("../img/fondo.jpg") center/cover fixed no-repeat;
+  min-height:100vh;
+  text-align: center;
+}
+/* --- HEADER --- */
+header {
+  height:90px;
+  width: 100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 1.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom:1px solid #E3E3E3;
+  margin-bottom: 100px;
+}
+.header{
+  height: 60vh !important; /*no afecta a esta parte */
+  background: url(/medicoypaciente.jpg) no-repeat center;
+  background-size: cover;
+}
+.titulo{
+  margin-bottom: 40px;
+  font-size: 60px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #00acdb;
+  font-family: 'Arial Black', sans-serif;
+  padding-left: 20px;
+}
+
+.contenedor p{
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+.btn{
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 40px;
+  color: #fff;
+  background-color: #00ACDB;
+}
+.btn:hover{
+  background: none;
+}
+.btn-saber{
+  display: flex;
+}
+.btn-saber a{
+  margin: 0px 10px;
+}
+.content {
+  display: flex;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+img{
+  width: 935px;
+  height: 450px;
+  padding: 0%;
+  margin: 0;
+}
+.medTracker {
+    font-size: 32px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #00ACDB;
+    font-family: 'Arial Black', sans-serif;
+    padding-left: 21px;
+}
+button{
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  background: #00ACDB;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover{
+  background:var(--primary-dark);
+  background: #008BB5;
+}
+/* Menu desplegable de boton REGISTRO */
+.dropdown{
+  position:relative;
+  display:inline-block}
+.dropdown-menu{
+  position:absolute;top:110%;left:0;width:140px;z-index:1000;
+  display:flex;flex-direction:column;
+  background:#fff;border:1px solid #ccc;border-radius:6px;
+  box-shadow:0 3px 6px rgba(0,0,0,.15)
+}
+.dropdown-menu button{
+  all:unset;
+  padding:.6rem 1rem;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--link);
+  border-bottom:1px solid #eee
+}
+.dropdown-menu button:last-child{border-bottom:none}
+.dropdown-menu button:hover{background:#f0f8ff}
+.hidden{display:none}
+
+/* --- MAIN --- */
+main.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contenedorUno,
+.contenedorDos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contenedorUno img,
+.contenedorDos img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contenedorUno h2,
+.contenedorDos h3 {
+  max-width: 500px;
+  line-height: 1.6;
+  font-weight: 400;
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-turno-container {
+  background: rgba(255, 255, 255, 0.95);
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.form-turno-container h2 {
+  text-align: center;
+  color: #0077c2;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.form-turno-container label {
+  font-weight: 600;
+  margin-top: 1rem;
+  display: block;
+  color: #333;
+}
+
+.form-turno-container input,
+.form-turno-container select,
+.form-turno-container textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fdfdfd;
+}
+
+.form-turno-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-turno-container button {
+  width: 100%;
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 30px;
+}
+
+
+
+/* --- ESTILOS ESPECÍFICOS POR PÁGINA PACIENTE --- */
+
+/* Mis turnos */
+.mis-turnos main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.mis-turnos table {
+  background-color: white;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top:42px ;
+}
+
+.mis-turnos th,
+.mis-turnos td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.mis-turnos th {
+  background-color: #007bff;
+  color: white;
+}
+
+.mis-turnos tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Archivos médicos */
+.archivos-medicos main {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+main h2 {
+  margin-bottom: 30px;
+}
+
+.li-archivos-medicos {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.li-archivos-medicos:hover {
+      background-color: #f1f1f1;
+}
+
+.archivos-medicos .filename {
+  font-weight: 600;
+}
+
+.archivos-medicos .filedate {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Recetas electrónicas */
+.recetas-electronicas main {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.recetas-electronicas .receta {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.recetas-electronicas .receta-header {
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #007bff;
+}
+
+.recetas-electronicas .receta-detalle {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.recetas-electronicas .fecha {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Mensajes */
+.mensajes main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.mensajes .mensaje {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.mensajes .mensaje-header {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #007bff;
+}
+
+.mensajes .mensaje-fecha {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.mensajes .mensaje-contenido {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* --- ESTILOS ESPECÍFICOS POR PÁGINA ESPECIALISTA --- */
+
+/* CARGA EVOLUTIVO */
+
+
+body.cargaEvolutivo {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:  #f2f6ff;
+}
+.contenedorPrincipal {
+  min-height: 100vh;           
+  display: flex;
+  align-items: center;         
+  justify-content: center;     
+  padding: 1rem;
+}
+
+main.cargaEvolutivo {
+  flex: 1;                        
+  display: flex;
+  align-items: center;            
+  justify-content: center;        
+  padding: 2rem;
+}
+
+/* ---------- Contenedor principal ---------- */
+.contenedorPrincipal {
+  width: 100%;
+  max-width: var(--ancho-max);
+  background: #fff;
+  border-radius: var(--borde);
+  box-shadow: var(--sombra);
+  padding: 2rem 2.5rem;
+  display: grid;
+  gap: var(--gap);
+}
+
+/* ---------- Sub‑secciones ---------- */
+.dniBusqueda,
+.contenedorDatos,
+.fechaCarga,
+.contenedorEvolutivo {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Línea divisoria HR */
+hr {
+  border: 0;
+  border-top: 1px solid #e4e8f0;
+}
+
+/* ---------- Formularios y campos ---------- */
+label {
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #c4c9d4;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+}
+
+input[readonly] {
+  background: #f7f9fc;
+  color: #4d5563;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Links de historia médica */
+.historiaGuardada a {
+  display: inline-block;
+  margin-right: 1rem;
+  text-decoration: none;
+  color: var(--primario);
+  font-weight: 500;
+}
+
+/* VER HISTORIA CLINICA */
+
+body.verHC {
+  min-height: 100vh;          
+  background: #f2f6ff;         
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  header { width:100%; }
+}
+body.verHC .contenedorPrincipalVerHC {
+  width: 100%;
+  max-width: 860px;            
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 2rem 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.contenedorPrincipalVerHC {
+  flex: 1;             
+  margin-block: 2rem;     
+  padding-inline: 2rem;
+}
+
+/* --- Búsqueda por DNI --- */
+body.verHC .dniBusquedaVerHC   { width: 30%; }
+
+/* --- Datos del paciente: grid 4 × n --- */
+#formularioPacienteCargadoVerHC {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 3rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+#formularioPacienteCargadoVerHC label {
+  text-align: right;
+  font-weight: 600;
+  align-self: center;
+}
+.historiaGuardadaVerHC { grid-column: 1 / -1; justify-content: center; }
+
+/* --- Evolutivos listados --- */
+.evolutivoVerHC {
+  background: #11c5dd;
+  border-left: 5px solid #00acdb;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  margin-bottom: 1rem;
+}
+
+/* --- Mensajes de error / estado --- */
+.mensajeEstadoVerHC           { visibility: hidden; }
+.mensajeEstadoVerHC.activo    { visibility: visible; color: red; }
+
+/* INDICACION MEDICA */
+
+body.indicacionMedica {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f2f6ff;   
+  header { width:100%; }   ;
+   align-items: center;              /* centra HORIZONTAL cada hijo */
+  min-height: 100vh;    
+}
+
+/* separa main de header/footer */
+body.indicacionMedica .contenedorPrincipalIndicacionMedica {
+  flex: 1;                      /* empuja el footer al fondo */
+  margin-block: 2rem;           /* aire arriba y abajo */
+  width: 100%;
+  max-width: 860px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 2rem 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* --- Datos del paciente -------------------------------------- */
+body.indicacionMedica .contenedorDatosIndicacionMedica {
+  display: flex;
+  justify-content: center;
+}
+#formularioPacienteCargadoInd {
+  /* 4 columnas */
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+  padding: 3rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+#formularioPacienteCargadoInd label {
+  text-align: right;
+  font-weight: 600;
+  align-self: center;
+}
+
+/* --- Indicaciones / evolutivo -------------------------------- */
+body.indicacionMedica .contenedorEvolutivoInd textarea {
+  width: 100%;
+  min-height: 120px;
+  background: #e2e2e2;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  resize: vertical;
+}
+body.indicacionMedica .contenedorEvolutivoInd button {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background: #00acdb;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+body.indicacionMedica .contenedorEvolutivoInd button:hover {
+  background: #008bb5;
+}
+
+/* --- Mensajes de estado -------------------------------------- */
+body.indicacionMedica .mensajeError  { visibility: hidden; }
+body.indicacionMedica .mensajeError.activo { visibility: visible; color:red; }
+
+/* ─────────── Mis Pacientes ─────────── */
+body.misPacientes {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2f6ff;
+}
+
+.centrado {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.contenedorPrincipalMisPacientes {
+  width: 100%;
+  max-width: 860px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 2rem 2.5rem;
+}
+
+.tablaPacientes {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablaPacientes th, .tablaPacientes td {
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.tablaPacientes th {
+  background-color: #00acdb;
+  color: white;
+}
+
+/* ────────── Recetas Electrónicas ────────── */
+body.recetasElectronicas {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2f6ff;
+  header { width:100%; }
+}
+
+body.recetasElectronicas main.centrado {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.contenedorPrincipalRecetasElectronicas {
+  width: 100%;
+  max-width: 860px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 2rem 2.5rem;
+}
+
+.contenedorPrincipalRecetasElectronicas form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contenedorPrincipalRecetasElectronicas label {
+  font-weight: 600;
+}
+
+.contenedorPrincipalRecetasElectronicas input,
+.contenedorPrincipalRecetasElectronicas select,
+.contenedorPrincipalRecetasElectronicas textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contenedorPrincipalRecetasElectronicas button {
+  width: 100%;
+  background: #00acdb;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contenedorPrincipalRecetasElectronicas button:hover {
+  background-color: #008bb5;
+}
+
+.tablaRecetas {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablaRecetas th, .tablaRecetas td {
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.tablaRecetas th {
+  background-color: #00acdb;
+  color: white;
+}
+
+/* ─────────── Transferencias ─────────── */
+body.transferencias {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2f6ff;
+  header { width:100%; }
+}
+
+body.transferencias main.centrado {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.contenedorPrincipalTransferencias {
+  width: 100%;
+  max-width: 860px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 3rem 3.5rem;   
+  row-gap: 2rem;  
+}
+
+.contenedorPrincipalTransferencias form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contenedorPrincipalTransferencias label {
+  font-weight: 600;
+}
+
+.contenedorPrincipalTransferencias select,
+.contenedorPrincipalTransferencias textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.filtroTransferencias {
+  width: 100%;
+}
+.filtroTransferencias input {
+  margin-bottom: 1rem;  
+}
+
+.tablaTransferencias {
+  margin-top: 0.5rem;     
+  border-collapse: separate;   
+  border-spacing: 0 0.5rem;    
+}
+
+.tablaTransferencias th,
+.tablaTransferencias td {
+  padding: 0.9rem 1.25rem;       
+}
+
+.tablaTransferencias tbody tr {
+  background: #f9fbff;           
+  border-radius: 6px;        
+}
+
+.tablaTransferencias tbody tr:hover {
+  background: #eef5ff;           
+}
+
+.tablaTransferencias td:last-child {
+  text-align: center;
+}
+
+.contenedorPrincipalTransferencias button {
+  width: 100%;
+  background: #00acdb;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contenedorPrincipalTransferencias button:hover {
+  background-color: #008bb5;
+}
+
+.listaTransferencias {
+  list-style: none;
+  padding-left: 0;
+}
+
+.listaTransferencias li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* -------- FOOTER (acortado) -------- */
+footer {
+  margin-top: 105px;
+}
+footer.footer {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #f5f5f5;
+  font-size: 0.85rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem; /* reducido */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem; /* reducido */
+  justify-content: space-evenly;
+}
+
+.footer-section h4 {
+  margin-bottom: 0.4rem; /* reducido */
+  font-size: 1rem; /* más chico */
+  color: #00acdb;
+}
+
+.footer-section p,
+.footer-section ul {
+  line-height: 1.4; /* más compacto */
+  margin: 0;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li a {
+  color: #f5f5f5;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.footer-section ul li a:hover {
+  opacity: 0.75;
+}
+
+.footer-section.social a {
+  font-size: 1.1rem; /* más chico */
+  margin-right: 0.5rem;
+  color: #f5f5f5;
+  transition: transform 0.3s;
+}
+
+.footer-section.social a:hover {
+  transform: scale(1.1); /* un poco más sutil */
+}
+
+.footer-copy {
+  background-color: rgba(0, 0, 0, 0.92);
+  text-align: center;
+  padding: 0.6rem 0; /* más bajo */
+  font-size: 0.75rem;
+}
