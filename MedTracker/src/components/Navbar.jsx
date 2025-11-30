@@ -1,3 +1,8 @@
+/* Navbar principal: muestra las opciones según el tipo de usuario
+     (paciente o especialista) y permite cerrar sesión. Mejora la experiencia
+     del usuario al navegar por la aplicación y asegura que las rutas sensibles
+     no sean accesibles sin login. */
+
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
