@@ -1,0 +1,135 @@
+.contenedorHome p{
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+.btn{
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 40px;
+  color: #fff;
+  background-color: #00ACDB;
+}
+.btn:hover{
+  background: none;
+}
+.btn-saber{
+  display: flex;
+}
+.btn-saber a{
+  margin: 0px 10px;
+}
+.content {
+  display: flex;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.imgHome{
+  width: 935px;
+  height: 450px;
+  padding: 0%;
+  margin: 0;
+}
+
+/* Menu desplegable de boton REGISTRO */
+.dropdown{
+  position:relative;
+  display:inline-block}
+.dropdown-menu{
+  position:absolute;top:110%;left:0;width:140px;z-index:1000;
+  display:flex;flex-direction:column;
+  background:#fff;border:1px solid #ccc;border-radius:6px;
+  box-shadow:0 3px 6px rgba(0,0,0,.15)
+}
+.dropdown-menu button{
+  all:unset;
+  padding:.6rem 1rem;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--link);
+  border-bottom:1px solid #eee
+}
+.dropdown-menu button:last-child{border-bottom:none}
+.dropdown-menu button:hover{background:#f0f8ff}
+.hidden{display:none}
+/* --- MAIN --- */
+main.contenedorHome {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.contenedorUno,
+.contenedorDos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.contenedorUno img,
+.contenedorDos img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.contenedorUno h2,
+.contenedorDos h3 {
+  max-width: 500px;
+  line-height: 1.6;
+  font-weight: 400;
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.dropdown-item {
+  padding: .6rem 1rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  display: block;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background: #f0f8ff;
+}
+
+.acciones-home {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.acciones-home button {
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  background: #00ACDB;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.acciones-home button:hover {
+  background: #008BB5;
+}
+
+.acciones-home .dropdown-menu {
+  top: 120%;
+  left: 0;
+}
+

@@ -1,0 +1,197 @@
+/* ==============================
+   CONTENEDORES 
+============================== */
+.contenedorDatosVerHC{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.contenedorCarga,
+.contenedorEvolutivo,
+.contenedorPrincipalVerHC {
+  width: 90%;
+  max-width: 90%;
+  margin: 0 0 20px 0;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.contenedorEvolutivo textarea {
+  width: 100%;     
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.contenedorPrincipal2,
+.recetario,
+.formulario {
+  max-width: 700px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.fechaCarga {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  border:solid #ccc 1px;
+  border-radius:8px;
+  max-width: 350px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.indicacionMedica .contenedorPrincipal2 {
+  max-width: 100%; /* botón y estructura arriba → ancho completo */
+  width: 100%;
+  margin: 20px 0;
+}
+
+
+/* ==============================
+   TÍTULOS
+============================== */
+
+.tituloCarga{
+  margin-top: 0;
+  text-align: center;
+  color: #333;
+}
+
+/* ==============================
+   FORMULARIOS
+============================== */
+
+.labelCarga {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.variosCarga {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 20px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.textareaCarga {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ==============================
+   BOTONES
+============================== */
+
+.botonCarga {
+  width: 100%;
+  padding: 12px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+.botonCarga:hover {
+  background: #005fa3;
+}
+
+.botonSecundario {
+  background: #4caf50;
+}
+
+.botonSecundario:hover {
+  background: #3c8b40;
+}
+
+/* ==============================
+   HISTORIA / ENLACES
+============================== */
+
+.historiaGuardada {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 30px 0 ;
+}
+.dniBusqueda{
+    margin: 30px 0 30px 0 ;
+
+}
+.historiaGuardada a {
+  margin: 8px 0;
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: bold;
+}
+
+.historiaGuardada a:hover {
+  text-decoration: underline;
+}
+
+
+/* ==============================
+  VARIOS
+============================== */
+.recetario {
+  padding: 10px 60px 30px 60px;
+  width: 550px;
+  height: 781px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  position: relative;
+  align-items: flex-end;
+  margin: 0 auto; /* centrado en pantalla */
+  page-break-inside: avoid;
+  text-align: right;
+}
+
+.campoIndicacion.campoReceta {
+  top: 290px;
+  left: 60px;
+  width: 500px;
+  height: 350px;
+  font-size: 20px;
+  background: transparent !important; 
+  padding: 100px 60px 30px 60px !important;
+  color: #000;
+  border: none;
+  outline: none;
+}
+
+/* ==============================
+   FORMULARIO EN DOS COLUMNAS
+============================== */
+
+.formDosColumnas{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 30px 0 30px 0 ;
+
+}
+
+.formDosColumnas label {
+  margin: 10px 0 10px 0 ;
+}
+
+.btnChico {
+  padding: 6px 14px;
+  font-size: 18px;
+  border-radius: 6px;
+  width: auto;
+  cursor: pointer;
+}

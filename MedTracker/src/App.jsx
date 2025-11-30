@@ -8,6 +8,8 @@ import RegistroPaciente from "./components/RegistroPaciente";
 import CargaEvolutivo from "./Pages/CargaEvolutivo";
 import VerHC from "./Pages/VerHc";
 import IndicacionMedica from "./Pages/IndicacionesMedicas";
+import Home from "./components/Home";
+import Contacto from "./components/Contacto";
 
 import MisTurnos from "./Pages/MisTurnos";
 import SolicitarTurno from "./Pages/SolicitarTurno";
@@ -20,22 +22,18 @@ function App() {
       <Navbar/>
       <main>
         <Routes>
+           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro-especialista" element={<RegistroEspecialista />} />
           <Route path="/registro-paciente" element={<RegistroPaciente />} />
           <Route path="/verhc/:dniCargado" element={<VerHC />} />
           <Route path="/indicacion/:dniCargado" element={<IndicacionMedica />} />
           <Route path="/carga-evolutivo" element={<CargaEvolutivo/>} />
-
-          <Route path="/mis-turnos" element={<MisTurnos />} />
-          <Route path="/solicitar-turno" element={<SolicitarTurno />} />
-          <Route path="/turnos-especialista" element={<TurnosEspecialista />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
       </main>
       <Footer />
     </BrowserRouter>
   );
 }
-
 export default App;
-

@@ -1,3 +1,4 @@
+//carga evolutivo
 import CargarPaciente from "../components/CargaPaciente";
 import "../styles/carga.css";
 import { useState } from "react";
@@ -12,7 +13,8 @@ const CargaEvolutivo = () => {
 
   return (
     <>
-      <main>
+           <div className="contenedorPrincipalVerHC">
+
             <CargarPaciente onPacienteEncontrado={setPaciente} />
             {paciente && (
 
@@ -27,13 +29,19 @@ const CargaEvolutivo = () => {
             
 
           )}
+          <div className="fechaCarga">
+            <h5 className="tituloCarga">FECHA</h5>
+            <h5 className="tituloCarga">HORA</h5>
+              <input className="variosCarga" type="date" />            
+              <input className="variosCarga" type="time" />
+          </div>
           
       <div className="contenedorEvolutivo">
-        <h5>EVOLUTIVO</h5>
-        <textarea placeholder="Ingrese el evolutivo del paciente"></textarea>
-        <button>GRABAR</button>
+        <h5 className="tituloCarga">EVOLUTIVO</h5>
+        <textarea className="textareaCarga" placeholder="Ingrese el evolutivo del paciente"></textarea>
+        <button className="btnChico">Grabar</button>
       </div>
-      </main>
+      </div>
     </>
   );
 };
