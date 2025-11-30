@@ -1,0 +1,78 @@
+.mis-turnos-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  min-height: 70vh;
+}
+
+.mis-turnos-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 35px;
+  width: 95%;
+  max-width: 620px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+.mis-turnos-title {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0a3f66;
+}
+
+/* --- Mensaje cuando no hay turnos --- */
+.mis-turnos-message {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  font-size: 16px;
+  color: #333;
+}
+
+/* --- Tabla --- */
+.mis-turnos-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.mis-turnos-table th {
+  background: #0a6bb8;
+  color: white;
+  padding: 12px;
+  border-radius: 8px 8px 0 0;
+  font-weight: 600;
+}
+
+.mis-turnos-table td {
+  padding: 12px;
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Hover fila */
+.mis-turnos-table tr:hover td {
+  background: #f0f7ff;
+}
+
+/* Estados */
+.estado-confirmado {
+  color: #0b8a1a;
+  font-weight: 600;
+}
+
+.estado-pendiente {
+  color: #cc8a00;
+  font-weight: 600;
+}
+
+.estado-cancelado {
+  color: #c32020;
+  font-weight: 600;
+}
