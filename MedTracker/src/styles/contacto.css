@@ -1,0 +1,61 @@
+.contacto-contenedor {
+  width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffffd9;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contacto-contenedor h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 28px;
+}
+
+.contacto-form .campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.contacto-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.contacto-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.btn-enviar {
+  width: 100%;
+  padding: 12px;
+  background-color: #00acdb;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-enviar:hover {
+  background-color: #008bb5;
+}

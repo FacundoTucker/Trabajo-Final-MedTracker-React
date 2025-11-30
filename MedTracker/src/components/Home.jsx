@@ -31,7 +31,6 @@ const Home = () => {
   </div>
 </div>
 
-
         <div className="contenedorUno">
           <img className="imgHome" src={ImgMedicosPacientes} alt="Imagen medico y pacientes"
           width="760"
