@@ -47,9 +47,13 @@ const Navbar = () => {
         )}
 
         <li className="saludo-navbar">
-          {esPaciente && `Hola Paciente ${usuario.nombre}`}
-          {esEspecialista && `Hola Especialista ${usuario.nombre}`}
-        </li>
+  <span className="user-icon">👤</span>
+  <span>
+    {esPaciente && `Hola! Paciente ${usuario.nombre}`}
+    {esEspecialista && `Hola! Dr/a ${usuario.nombre}`}
+  </span>
+</li>
+
 
         <li className="logout-btn" onClick={handleLogout}>Cerrar Sesión</li>
       </ul>

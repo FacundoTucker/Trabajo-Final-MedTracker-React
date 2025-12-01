@@ -39,3 +39,32 @@
 .logout-btn:hover {
   color: white;
 }
+.navbar {
+  background: #1976d2;
+  padding: 4px 20px;   /* antes 10px */
+  margin: 0;            /* por si acaso */
+}
+.navbar {
+  margin-top: -100px;
+}
+
+.saludo-navbar {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #fff; /* si el navbar es azul */
+}
+
+.user-icon {
+  background: white;
+  color: #1976d2;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
