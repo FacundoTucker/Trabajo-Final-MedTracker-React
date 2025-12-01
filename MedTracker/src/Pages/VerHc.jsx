@@ -8,17 +8,15 @@ export default function VerHC() {
   const { dniCargado } = useParams(); // obtenemos el parámetro de la URL
 
   useEffect(() => {
-    if (!dniCargado) return;
+  if (!dniCargado) return;
 
-    const pacientesRaw = localStorage.getItem("pacientesDePrueba");
-    if (!pacientesRaw) return;
+  fetch(`http://localhost:3000/paciente/dni/${dniCargado}`) .then(r => {
+  if (!r.ok) throw new Error();
+  return r.json();
+  })
+  .then(data => setPaciente(data))
+  .catch(() => setPaciente(null));
 
-    const pacientes = JSON.parse(pacientesRaw);
-    const encontrado = pacientes.find(
-      (p) => p.numeroDocumento === dniCargado
-    );
-
-    if (encontrado) setPaciente(encontrado);
   }, [dniCargado]);
 
   return (

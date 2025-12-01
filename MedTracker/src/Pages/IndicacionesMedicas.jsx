@@ -13,14 +13,14 @@ export default function IndicacionMedica() {
   useEffect(() => {
     if (!dniCargado) return;
 
-    const pacientesRaw = localStorage.getItem("pacientesDePrueba");
-    if (!pacientesRaw) return;
+    fetch(`http://localhost:3000/paciente/dni/${dniCargado}`)
+    .then(r => {
+      if (!r.ok) throw new Error();
+      return r.json();
+    })
+    .then(data => setPaciente(data))
+    .catch(() => setPaciente(null));
 
-    const pacientes = JSON.parse(pacientesRaw);
-    const encontrado = pacientes.find(
-      (p) => p.numeroDocumento === dniCargado
-    );
-    if (encontrado) setPaciente(encontrado);
   }, [dniCargado]);
 
   // IMPRIMIR
@@ -135,7 +135,7 @@ const convertirImagenABase64 = (url) => {
         </div>
         <div class="item dni">
           <label>DNI:</label>
-          ${paciente ? paciente.numeroDocumento : ""}
+          ${paciente ? paciente.DNI : ""}
         </div>
         <div class="item domicilio">
           <label>Domicilio:</label>
@@ -165,7 +165,7 @@ const convertirImagenABase64 = (url) => {
     );
 
     nuevasIndicaciones.push({
-      dni: paciente.numeroDocumento,
+      dni: paciente.DNI,
       texto: indicacion,
       fecha: new Date().toLocaleString(),
     });
@@ -194,7 +194,7 @@ const convertirImagenABase64 = (url) => {
         value={`${paciente.nombre} ${paciente.apellido}`} />
       <label className="labelCarga">DNI:</label>
        <input className="campoReceta campoDni" type="text" readOnly
-        value={paciente.numeroDocumento} />
+        value={paciente.DNI} />
       <label className="labelCarga">Domicilio:</label>
       <input className="campoReceta campoDomicilio" type="text" readOnly
         value={paciente.domicilio} />

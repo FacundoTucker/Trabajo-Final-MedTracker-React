@@ -10,36 +10,38 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
   const handleBuscar = () => {
     const dni = dniBusqueda.trim();
     if (!dni) {
-      setMensaje({ texto: "Por favor, ingrese un número de DNI para buscar.", tipo: "error" });
+      setMensaje({
+        texto: "Por favor, ingrese un número de DNI para buscar.",
+        tipo: "error"
+      });
       setPaciente(null);
       onPacienteEncontrado?.(null);
-
       return;
     }
 
-    const pacientesGuardadosRaw = localStorage.getItem("pacientesDePrueba");
-    if (!pacientesGuardadosRaw) {
-      setMensaje({ texto: "No hay datos de pacientes guardados localmente.", tipo: "error" });
-      setPaciente(null);
-      onPacienteEncontrado?.(null);
+    fetch(`http://localhost:3000/paciente/dni/${dni}`)
+      .then((r) => {
+        if (!r.ok) throw new Error();
+        return r.json();
+      })
+      .then((data) => {
+        setPaciente(data);
+        onPacienteEncontrado?.(data);
 
-      return;
-    }
+        setMensaje({
+          texto: `Datos de "${data.nombre} ${data.apellido}" cargados.`,
+          tipo: "exito"
+        });
+      })
+      .catch(() => {
+        setPaciente(null);
+        onPacienteEncontrado?.(null);
 
-    const pacientes = JSON.parse(pacientesGuardadosRaw);
-    const encontrado = pacientes.find((p) => p.numeroDocumento === dni);
-
-    if (encontrado) {
-      setPaciente(encontrado);
-      onPacienteEncontrado?.(encontrado);
-
-      setMensaje({ texto: `Datos de "${encontrado.nombre} ${encontrado.apellido}" cargados.`, tipo: "exito" });
-    } else {
-      setPaciente(null);
-      onPacienteEncontrado?.(null);
-
-      setMensaje({ texto: `No se encontró ningún paciente con DNI: ${dni}`, tipo: "error" });
-    }
+        setMensaje({
+          texto: `No se encontró ningún paciente con DNI: ${dni}`,
+          tipo: "error"
+        });
+      });
   };
 
   return (
@@ -48,13 +50,15 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
         <h2 className="tituloCarga">Carga evolutivo</h2>
         <label className="labelCarga">Ingresa un DNI registrado.</label>
         <input
-        className="variosCarga"
+          className="variosCarga"
           type="text"
           value={dniBusqueda}
           onChange={(e) => setDniBusqueda(e.target.value)}
           placeholder="Ej: 12345678"
         />
-        <button className="btnChico" onClick={handleBuscar}>Cargar Datos</button>
+        <button className="btnChico" onClick={handleBuscar}>
+          Cargar Datos
+        </button>
 
         {mensaje.texto && (
           <div className={`mensajeEstado ${mensaje.tipo}`}>{mensaje.texto}</div>
@@ -63,12 +67,9 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
 
       <hr />
 
-      {/* Reutilizo datos */}
-      {paciente && <FormularioPaciente paciente={paciente} editable={false} />
-}
+      {paciente && <FormularioPaciente paciente={paciente} editable={false} />}
 
       <hr />
-    
     </div>
   );
 }

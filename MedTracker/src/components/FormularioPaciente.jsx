@@ -1,3 +1,4 @@
+/*FormularioPaciente.jsx*/
 import "../styles/carga.css";
 
 export default function FormularioPaciente({ paciente = {}, editable = false }) {
@@ -9,7 +10,7 @@ export default function FormularioPaciente({ paciente = {}, editable = false }) 
           <label>Nombre y Apellido:</label>
           <input
             type="text"
-            value={`${paciente.nombre || ""} ${paciente.apellido || ""}`}
+            value={`${paciente?.nombre || ""} ${paciente?.apellido || ""}`}
             readOnly={!editable}
           />
         </div>
@@ -18,7 +19,7 @@ export default function FormularioPaciente({ paciente = {}, editable = false }) 
           <label>DNI:</label>
           <input
             type="text"
-            value={paciente.numeroDocumento || ""}
+            value={paciente.DNI || ""}
             readOnly={!editable}
           />
         </div>
@@ -37,7 +38,7 @@ export default function FormularioPaciente({ paciente = {}, editable = false }) 
           <label>Teléfono:</label>
           <input
             type="tel"
-            value={paciente.telefono || ""}
+            value={paciente.nroTelefono || ""}
             readOnly={!editable}
           />
         </div>
