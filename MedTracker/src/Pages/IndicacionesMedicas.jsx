@@ -1,12 +1,13 @@
-//indicacionesMedicas
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/carga.css";
 import fondoRecetario from "../img/recetario.png";
+import Swal from "sweetalert2";
 
 export default function IndicacionMedica() {
   const { dniCargado } = useParams();
   const [paciente, setPaciente] = useState(null);
+  const [historia, setHistoria] = useState(null);
   const [indicacion, setIndicacion] = useState("");
   const printRef = useRef();
 
@@ -14,200 +15,199 @@ export default function IndicacionMedica() {
     if (!dniCargado) return;
 
     fetch(`http://localhost:3000/paciente/dni/${dniCargado}`)
-    .then(r => {
-      if (!r.ok) throw new Error();
-      return r.json();
-    })
-    .then(data => setPaciente(data))
-    .catch(() => setPaciente(null));
+      .then((r) => {
+        if (!r.ok) throw new Error();
+        return r.json();
+      })
+      .then((dataPaciente) => {
+        setPaciente(dataPaciente);
 
+        return fetch(
+          `http://localhost:3000/historia-clinica/paciente/${dataPaciente.idPaciente}`
+        );
+      })
+      .then((r) => {
+        if (!r.ok) throw new Error();
+        return r.json();
+      })
+      .then((historiaData) => {
+        setHistoria(historiaData);
+      })
+      .catch(() => {
+        setPaciente(null);
+        setHistoria(null);
+      });
   }, [dniCargado]);
 
-  // IMPRIMIR
-
-  // Convierte la imagen importada a Base64 para que cargue en la impresión
-const convertirImagenABase64 = (url) => {
-  return fetch(url)
-    .then((res) => res.blob())
-    .then(
-      (blob) =>
-        new Promise((resolve) => {
-          const lector = new FileReader();
-          lector.onloadend = () => resolve(lector.result);
-          lector.readAsDataURL(blob);
-        })
-    );
-};
+  const convertirImagenABase64 = (url) => {
+    return fetch(url)
+      .then((res) => res.blob())
+      .then(
+        (blob) =>
+          new Promise((resolve) => {
+            const lector = new FileReader();
+            lector.onloadend = () => resolve(lector.result);
+            lector.readAsDataURL(blob);
+          })
+      );
+  };
 
   const imprimirDiv = async () => {
-  if (!printRef.current) return;
+    if (!printRef.current) return;
 
-  const contenido = printRef.current.innerHTML;
-  const ventana = window.open("", "_blank");
+    const ventana = window.open("", "_blank");
+    const fondoBase64 = await convertirImagenABase64(fondoRecetario);
 
-  // Convertimos la imagen importada a Base64
-  const fondoBase64 = await convertirImagenABase64(fondoRecetario);
+    ventana.document.write(`
+      <html>
+      <head>
+        <title>Imprimir receta</title>
+        <style>
+          body { margin: 10; padding: 0; }
+          #recetaFondo {
+            position: absolute;
+            border:solid #000000 1px;
+            top: 0; left: 0;
+            width: 550px; height: 781px;
+            z-index: -1;
+          }
+          .recetarioPrint {
+            position: relative;
+            width: 550px; height: 781px;
+            font-family: Arial, sans-serif;
+          }
+          .bloqueDatos {
+            position: absolute;
+            top: 30px; left: 70px;
+            width: 420px;
+            display: grid;
+            grid-template-columns: 1fr;
+            font-size: 20px;
+            gap: 10px;
+          }
+          .item { display: flex; flex-direction: column; align-items: flex-end; }
+          .item label { font-weight: bold; margin-bottom: 5px; }
+          .bloqueIndicacion {
+            position: absolute;
+            top: 290px; left: 100px;
+            width: 430px; height: 350px;
+            font-size: 20px; overflow: hidden;
+          }
+        </style>
+      </head>
 
-  ventana.document.write(`
-    <html>
-  <head>
-    <title>Imprimir receta</title>
-    <style>
-      body {
-        margin: 10;
-        padding: 0;
-      }
+      <body onload="window.print(); window.close();">
+        <div class="recetarioPrint">
+          <img id="recetaFondo" src="${fondoBase64}" />
 
-      /* Fondo fijo */
-      #recetaFondo {
-        position: absolute;
-        border:solid #000000 1px;
-        top: 0;
-        left: 0;
-        width: 550px;
-        height: 781px;
-        z-index: -1;
-      }
+          <div class="bloqueDatos">
+            <div class="item"><label>Nombre y Apellido:</label> ${paciente ? `${paciente.nombre} ${paciente.apellido}` : ""}</div>
+            <div class="item"><label>DNI:</label> ${paciente ? paciente.DNI : ""}</div>
+            <div class="item"><label>Domicilio:</label> ${paciente ? paciente.domicilio : ""}</div>
+          </div>
 
-      .recetarioPrint {
-        position: relative;
-        width: 550px;
-        height: 781px;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
-
-      /* ==========================
-         DATOS DEL PACIENTE
-      ========================== */
-      .bloqueDatos {
-          position: absolute;
-          top: 30px; 
-          left: 70px; 
-          width: 420px; 
-          display: grid;
-          grid-template-columns: 1fr;
-          font-size: 20px;
-          color: #000;
-          gap: 10px; 
-        }
-
-        .bloqueDatos .item {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end; 
-        }
-
-        .bloqueDatos .item label {
-          font-weight: bold;
-          margin-bottom: 5px;
-        }
-
-      /* ==========================
-         INDICACIÓN MÉDICA
-      ========================== */
-      .bloqueIndicacion {
-        position: absolute;
-        top: 290px; 
-        left: 100px; 
-        width: 430px;
-        height: 350px; 
-        font-size: 20px;
-        color: #000;
-        overflow: hidden;
-      }
-      .bloqueDatos, .bloqueIndicacion {
-        box-sizing: border-box;
-}
-
-    </style>
-  </head>
-
-  <body onload="window.print(); window.close();">
-    <div class="recetarioPrint">
-      <img id="recetaFondo" src="${fondoBase64}" />
-
-      <!-- DATOS DEL PACIENTE -->
-      <div class="bloqueDatos">
-        <div class="item nombre">
-        <label>Nombre y Apellido:</label>
-          ${paciente ? `${paciente.nombre} ${paciente.apellido}` : ""}
+          <div class="bloqueIndicacion">
+            ${indicacion ? indicacion.replace(/\n/g, "<br>") : ""}
+          </div>
         </div>
-        <div class="item dni">
-          <label>DNI:</label>
-          ${paciente ? paciente.DNI : ""}
-        </div>
-        <div class="item domicilio">
-          <label>Domicilio:</label>
-          ${paciente ? paciente.domicilio : ""}
-        </div>
-      </div>
+      </body>
+      </html>
+    `);
 
-      <!-- INDICACIÓN MÉDICA -->
-      <div class="bloqueIndicacion">
-        ${indicacion ? indicacion.replace(/\n/g, "<br>") : ""}
-      </div>
-    </div>
-  </body>
-</html>
-  `);
+    ventana.document.close();
+  };
 
-  ventana.document.close();
-};
+  const guardarIndicacion = async () => {
+    if (!historia) {
+      alert("❌ No hay historia clínica asociada al paciente.");
+      return;
+    }
 
+    try {
+      const resp = await fetch("http://localhost:3000/indicacion-medica", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          descripcion: indicacion,
+          idHistoriaClinica: historia.idHistoriaClinica,
+          fecha: new Date().toISOString()
+        }),
+      });
 
-  // GUARDAR
-  const guardarIndicacion = () => {
-    if (!paciente) return;
+      if (!resp.ok) throw new Error();
 
-    const nuevasIndicaciones = JSON.parse(
-      localStorage.getItem("indicacionesMedicas") || "[]"
-    );
-
-    nuevasIndicaciones.push({
-      dni: paciente.DNI,
-      texto: indicacion,
-      fecha: new Date().toLocaleString(),
+      Swal.fire({
+      icon: "success",
+      title: "Indicación guardada",
+      text: "✔ La indicación médica fue registrada correctamente.",
+      confirmButtonColor: "#00acdb",
     });
+      setIndicacion("");
 
-    localStorage.setItem(
-      "indicacionesMedicas",
-      JSON.stringify(nuevasIndicaciones)
-    );
-
-    alert("✅ Indicación guardada correctamente");
-    setIndicacion("");
+    } catch (err) {
+      Swal.fire({
+      icon: "error",
+      title: "Error al guardar",
+      text: "❌ Ocurrió un error al intentar guardar la indicación. ",
+      confirmButtonColor: "#00acdb",
+    });
+    }
   };
 
   return (
     <div className="contenedorPrincipal2">
-      <button className="botonCarga" onClick={imprimirDiv}>🖨️ Imprimir receta</button>
+      <button className="botonCarga" onClick={imprimirDiv}>
+        🖨️ Imprimir receta
+      </button>
+
       <hr />
 
-      {/* RECETARIO */}
-      <div id="recetario" className="recetario" ref={printRef}
-        style={{ backgroundImage: `url(${fondoRecetario})` }}> {paciente ? (
-      <>
-            {/* CAMPOS POSICIONADOS SOBRE EL FONDO */}
-      <label className="labelCarga">Nombre y Apellido:</label>
-      <input className="campoReceta campoNombre" type="text" readOnly
-        value={`${paciente.nombre} ${paciente.apellido}`} />
-      <label className="labelCarga">DNI:</label>
-       <input className="campoReceta campoDni" type="text" readOnly
-        value={paciente.DNI} />
-      <label className="labelCarga">Domicilio:</label>
-      <input className="campoReceta campoDomicilio" type="text" readOnly
-        value={paciente.domicilio} />
+      <div
+        id="recetario"
+        className="recetario"
+        ref={printRef}
+        style={{ backgroundImage: `url(${fondoRecetario})` }}
+      >
+        {paciente ? (
+          <>
+            <label className="labelCarga">Nombre y Apellido:</label>
+            <input
+              className="campoReceta campoNombre"
+              type="text"
+              readOnly
+              value={`${paciente.nombre} ${paciente.apellido}`}
+            />
 
-      <textarea className="campoReceta campoIndicacion"
-        value={indicacion} onChange={(e) => setIndicacion(e.target.value)} ></textarea>
-      </>
+            <label className="labelCarga">DNI:</label>
+            <input
+              className="campoReceta campoDni"
+              type="text"
+              readOnly
+              value={paciente.DNI}
+            />
+
+            <label className="labelCarga">Domicilio:</label>
+            <input
+              className="campoReceta campoDomicilio"
+              type="text"
+              readOnly
+              value={paciente.domicilio}
+            />
+
+            <textarea
+              className="campoReceta campoIndicacion"
+              value={indicacion}
+              onChange={(e) => setIndicacion(e.target.value)}
+            ></textarea>
+          </>
         ) : (
           <p>No se encontró el paciente.</p>
         )}
       </div>
 
-      <button className="botonCarga" onClick={guardarIndicacion}>💾 GUARDAR INDICACIÓN</button>
+      <button className="botonCarga" onClick={guardarIndicacion}>
+        💾 GUARDAR INDICACIÓN
+      </button>
     </div>
   );
 }

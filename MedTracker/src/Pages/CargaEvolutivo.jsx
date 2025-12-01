@@ -13,7 +13,7 @@ const CargaEvolutivo = () => {
 
   return (
     <>
-           <div className="contenedorPrincipalVerHC">
+           <div className="contenedorEvolutivo">
 
             <CargarPaciente onPacienteEncontrado={setPaciente} />
             {paciente && (
