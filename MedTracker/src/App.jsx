@@ -11,6 +11,7 @@ import IndicacionMedica from "./Pages/IndicacionesMedicas";
 import Home from "./components/Home";
 import Contacto from "./components/Contacto";
 
+
 import MisTurnos from "./Pages/MisTurnos";
 import SolicitarTurno from "./Pages/SolicitarTurno";
 import TurnosEspecialista from "./Pages/TurnosEspecialista";
@@ -30,6 +31,10 @@ function App() {
           <Route path="/indicacion/:dniCargado" element={<IndicacionMedica />} />
           <Route path="/carga-evolutivo" element={<CargaEvolutivo/>} />
           <Route path="/contacto" element={<Contacto />} />
+
+          <Route path="/mis-turnos" element={<MisTurnos/>} />
+          <Route path="/solicitar-turno" element={<SolicitarTurno/>} />
+          <Route path="/turnos-especialista" element={<TurnosEspecialista/>} />
         </Routes>
       </main>
       <Footer />
