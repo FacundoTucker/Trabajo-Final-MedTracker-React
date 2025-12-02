@@ -1,0 +1,51 @@
+.contenedor-solicitar {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+}
+
+.contenedor-solicitar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #005f8f;
+}
+
+/* FORMULARIO SOLO DE ESTA PANTALLA */
+form.solicitar-turno-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.solicitar-turno-label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+/* CAMPOS DEL FORM */
+.solicitar-turno-label, 
+.solicitar-turno-input [type="datetime-local"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* BOTÓN SOLO DE ESTA PANTALLA */
+.solicitar-turno-btn {
+  margin-top: 10px;
+  padding: 12px;
+  background: #00a2d3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.solicitar-turno-btn:hover {
+  background: #008bb5;
+}

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import RegistroEspecialista from "./components/RegistroEspecialista";
 import Login from "./components/Login";
 import RegistroPaciente from "./components/RegistroPaciente";
@@ -10,10 +11,16 @@ import IndicacionMedica from "./Pages/IndicacionesMedicas";
 import Home from "./components/Home";
 import Contacto from "./components/Contacto";
 
+
+import MisTurnos from "./Pages/MisTurnos";
+import SolicitarTurno from "./Pages/SolicitarTurno";
+import TurnosEspecialista from "./Pages/TurnosEspecialista";
+
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      <Navbar/>
       <main>
         <Routes>
            <Route path="/" element={<Home />} />
@@ -24,6 +31,10 @@ function App() {
           <Route path="/indicacion/:dniCargado" element={<IndicacionMedica />} />
           <Route path="/carga-evolutivo" element={<CargaEvolutivo/>} />
           <Route path="/contacto" element={<Contacto />} />
+
+          <Route path="/mis-turnos" element={<MisTurnos/>} />
+          <Route path="/solicitar-turno" element={<SolicitarTurno/>} />
+          <Route path="/turnos-especialista" element={<TurnosEspecialista/>} />
         </Routes>
       </main>
       <Footer />
