@@ -13,25 +13,29 @@
   color: #005f8f;
 }
 
-form {
+/* FORMULARIO SOLO DE ESTA PANTALLA */
+form.solicitar-turno-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-label {
+.solicitar-turno-label {
   font-weight: bold;
   font-size: 14px;
 }
 
-select,
-input[type="datetime-local"] {
+
+/* CAMPOS DEL FORM */
+.solicitar-turno-label, 
+.solicitar-turno-input [type="datetime-local"] {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
 }
 
-button {
+/* BOTÓN SOLO DE ESTA PANTALLA */
+.solicitar-turno-btn {
   margin-top: 10px;
   padding: 12px;
   background: #00a2d3;
@@ -42,6 +46,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.solicitar-turno-btn:hover {
   background: #008bb5;
 }

@@ -85,7 +85,7 @@
 
 .lista-turnos-esp {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* siempre 3 columnas */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 0;
   margin: 0;
@@ -95,12 +95,12 @@
 .item-turno-esp {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* para que los botones queden abajo */
+  justify-content: space-between; 
 }
 .turnos-especialista-container {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 60px); /* 60px = altura aproximada del navbar */
+  min-height: calc(100vh - 60px); 
   padding: 20px;
 }
 
@@ -109,7 +109,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  flex: 1; /* ocupa el espacio disponible */
+  flex: 1; 
   margin: 0;
   padding: 0;
   list-style: none;

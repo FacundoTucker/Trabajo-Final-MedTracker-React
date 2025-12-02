@@ -13,7 +13,7 @@
 }
 
 .saludo-navbar {
-  margin-left: auto; /* empuja el saludo y logout hacia la derecha */
+  margin-left: auto; 
   font-weight: 500;
   color: #333;
 }
@@ -41,8 +41,8 @@
 }
 .navbar {
   background: #1976d2;
-  padding: 4px 20px;   /* antes 10px */
-  margin: 0;            /* por si acaso */
+  padding: 4px 20px;   
+  margin: 0;            
 }
 .navbar {
   margin-top: -100px;
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  color: #fff; /* si el navbar es azul */
+  color: #fff; 
 }
 
 .user-icon {

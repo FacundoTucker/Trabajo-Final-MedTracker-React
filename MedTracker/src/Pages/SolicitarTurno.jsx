@@ -90,9 +90,10 @@ if (hora < 8 || hora >= 16) {
     <div className="contenedor-solicitar">
       <h2>Solicitar Turno</h2>
 
-      <form onSubmit={solicitarTurno}>
-        <label>Especialista</label>
+      <form className="solicitar-turno-form" classnonSubmit={solicitarTurno}>
+        <label className="solicitar-turno-label">Especialista</label>
         <select
+        className="solicitar-turno-select"
           value={idEspecialista}
           onChange={(e) => setIdEspecialista(e.target.value)}
         >
@@ -104,14 +105,15 @@ if (hora < 8 || hora >= 16) {
           ))}
         </select>
 
-        <label>Fecha y hora</label>
+        <label className="solicitar-turno-label">Fecha y hora</label>
         <input
           type="datetime-local"
+          className="solicitar-turno-input"
           value={fechaTurno}
           onChange={(e) => setFechaTurno(e.target.value)}
         />
 
-        <button type="submit">Confirmar Turno</button>
+        <button type="submit" className="solicitar-turno-btn">Confirmar Turno</button>
       </form>
     </div>
   );
