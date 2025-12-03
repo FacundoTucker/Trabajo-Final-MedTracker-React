@@ -28,6 +28,8 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
         setPaciente(data);
         onPacienteEncontrado?.(data);
 
+        localStorage.setItem("pacienteActual", JSON.stringify(data));
+
         setMensaje({
           texto: `Datos de "${data.nombre} ${data.apellido}" cargados.`,
           tipo: "exito"

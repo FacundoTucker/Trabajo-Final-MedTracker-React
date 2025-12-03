@@ -13,6 +13,9 @@ const Navbar = () => {
 
   const [usuario, setUsuario] = useState(null);
 
+  const pacienteActual = JSON.parse(localStorage.getItem("pacienteActual"));
+  const dniActual = pacienteActual?.DNI;
+
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("usuarioActivo"));
     if (data) setUsuario({ ...data, rol: data.rol?.toLowerCase() });
@@ -43,6 +46,12 @@ const Navbar = () => {
           <>
             <li><Link to="/turnos-especialista">Mis Turnos</Link></li>
             <li><Link to="/carga-evolutivo">Cargar Evolutivo</Link></li>
+            {dniActual && (
+              <>
+              <li><Link to={`/verhc/${dniActual}`}>📄 Ver Historia Clínica</Link></li>
+              <li><Link to={`/indicacion/${dniActual}`}>🩺 Nueva indicación</Link></li>
+              </>
+            )}
           </>
         )}
 
