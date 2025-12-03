@@ -41,6 +41,8 @@ export default function VerHC() {
 
   return (
     <div className="contenedorPrincipalVerHC">
+      <h2 className="tituloCarga">Historia Clínica</h2>
+      <hr />
       <div className="contenedorDatosVerHC">
         {paciente ? (
           <FormularioPaciente paciente={paciente} editable={false} />

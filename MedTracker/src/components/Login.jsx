@@ -72,8 +72,6 @@ const Login = () => {
 
         {error && <p className="mostrarMensajeError">{error}</p>}
 
-        <Link to="/recuperar-contraseña">¿Has olvidado la contraseña?</Link>
-
         <button type="submit">INICIAR SESIÓN</button>
       </form>
     </div>

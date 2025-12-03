@@ -45,9 +45,9 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
   };
 
   return (
-    <div className="contenedorPrincipal">
+    <div className="contenedorPrincipalCargaEvolutivo">
       <div className="dniBusqueda">
-        <h2 className="tituloCarga">Carga evolutivo</h2>
+        <h2 className="tituloCarga">Carga de Paciente</h2>
         <label className="labelCarga">Ingresa un DNI registrado.</label>
         <input
           className="variosCarga"
@@ -69,7 +69,6 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
 
       {paciente && <FormularioPaciente paciente={paciente} editable={false} />}
 
-      <hr />
     </div>
   );
 }
