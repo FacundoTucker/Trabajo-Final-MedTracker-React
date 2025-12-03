@@ -2,8 +2,6 @@
 import CargarPaciente from "../components/CargaPaciente";
 import "../styles/carga.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import VerHC from "./VerHc";
 
 
 
@@ -13,22 +11,8 @@ const CargaEvolutivo = () => {
 
   return (
     <>
-           <div className="contenedorEvolutivo">
-
+           <div className="contenedorEvolutivoPrincipal">
             <CargarPaciente onPacienteEncontrado={setPaciente} />
-            {paciente && (
-
-            <div className="historiaGuardada">
-              <Link to={`/verhc/${paciente.DNI}`}>
-                📄 Ver Historia Clínica
-              </Link>
-              <Link to={`/indicacion/${paciente.DNI}`}>
-                🩺 Nueva indicación médica
-              </Link>
-            </div>
-            
-
-          )}
           <div className="fechaCarga">
             <h5>FECHA</h5>
             <h5>HORA</h5>
