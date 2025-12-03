@@ -90,7 +90,7 @@ if (hora < 8 || hora >= 16) {
     <div className="contenedor-solicitar">
       <h2>Solicitar Turno</h2>
 
-      <form className="solicitar-turno-form" classnonSubmit={solicitarTurno}>
+      <form className="solicitar-turno-form" onSubmit={solicitarTurno}>
         <label className="solicitar-turno-label">Especialista</label>
         <select
         className="solicitar-turno-select"
