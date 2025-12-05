@@ -13,15 +13,39 @@ const Navbar = () => {
 
   const [usuario, setUsuario] = useState(null);
 
-  const pacienteActual = JSON.parse(localStorage.getItem("pacienteActual"));
-  const dniActual = pacienteActual?.DNI;
+  const [dniActual, setDniActual] = useState(null);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("usuarioActivo"));
-    if (data) setUsuario({ ...data, rol: data.rol?.toLowerCase() });
-  }, []); // se ejecuta al montar el componente
+  const p = JSON.parse(localStorage.getItem("pacienteActual"));
+  setDniActual(p?.DNI || null);
+}, []);
 
-  const rutasOcultas = ["/login", "/registro-paciente", "/registro-especialista"];
+
+  useEffect(() => {
+  //carga usuario
+  const data = JSON.parse(localStorage.getItem("usuarioActivo"));
+  if (data) {
+    setUsuario({ ...data, rol: data.rol?.toLowerCase() });
+  } else {
+    setUsuario(null);
+  }
+
+  //escucha los cambios del paciente actual
+  const actualizarPaciente = (e) => {
+    const nuevoPaciente = e.detail;
+    setDniActual(nuevoPaciente?.DNI);
+  };
+
+  window.addEventListener("pacienteChanged", actualizarPaciente);
+
+  return () => {
+    window.removeEventListener("pacienteChanged", actualizarPaciente);
+  };
+}, [location]);
+
+
+
+  const rutasOcultas = ["/login", "/registro-paciente", "/registro-especialista","/","/contacto"];
   if (rutasOcultas.includes(location.pathname) || !usuario) return null;
 
   const esPaciente = usuario.tipo === "paciente";
@@ -39,17 +63,21 @@ const Navbar = () => {
         {esPaciente && (
           <>
             <li><Link to="/mis-turnos">Mis Turnos</Link></li>
+            <span className="divider-vertical"></span>
             <li><Link to="/solicitar-turno">Solicitar Turno</Link></li>
           </>
         )}
         {esEspecialista && (
           <>
             <li><Link to="/turnos-especialista">Mis Turnos</Link></li>
+            <span className="divider-vertical"></span>
             <li><Link to="/carga-evolutivo">Cargar Evolutivo</Link></li>
+            <span className="divider-vertical"></span>
             {dniActual && (
               <>
-              <li><Link to={`/verhc/${dniActual}`}>📄 Ver Historia Clínica</Link></li>
-              <li><Link to={`/indicacion/${dniActual}`}>🩺 Nueva indicación</Link></li>
+              <li><Link to={`/verhc/${dniActual}`}>Ver Historia Clínica</Link></li>
+              <span className="divider-vertical"></span>
+              <li><Link to={`/indicacion/${dniActual}`}>Nueva indicación</Link></li>
               </>
             )}
           </>
