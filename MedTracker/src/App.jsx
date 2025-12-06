@@ -16,6 +16,10 @@ import TurnosEspecialista from "./Pages/TurnosEspecialista";
 import EditarPaciente from "./components/EditarPaciente";
 import EditarEspecialista from "./components/EditarEspecialista";
 
+import DashboardPaciente from "./Pages/DashboardPaciente";
+import DashboardEspecialista from "./Pages/DashboardEspecialista";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -37,6 +41,9 @@ function App() {
           <Route path="/mis-turnos" element={<MisTurnos/>} />
           <Route path="/solicitar-turno" element={<SolicitarTurno/>} />
           <Route path="/turnos-especialista" element={<TurnosEspecialista/>} />
+
+          <Route path="/dashboard-paciente" element={<DashboardPaciente />} />
+          <Route path="/dashboard-especialista" element={<DashboardEspecialista />} />
         </Routes>
       </main>
       <Footer />

@@ -1,0 +1,130 @@
+.dashboard-container {
+  padding: 40px 60px;
+  background-color: #f4f8fb;
+  min-height: 100vh;
+}
+
+/* ---------- SECCIONES ---------- */
+
+.section {
+  background: #ffffff;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.section h3 {
+  margin-bottom: 20px;
+  color: #0f4c75;
+  font-size: 20px;
+}
+
+/* ---------- TURNOS ---------- */
+
+.turnos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.turno-card {
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #e9f4fb;
+  border-left: 6px solid #3282b8;
+  transition: transform 0.2s;
+}
+
+.turno-card:hover {
+  transform: translateY(-2px);
+}
+
+.turno-card h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #1b262c;
+}
+
+.turno-card p {
+  margin: 4px 0;
+  font-size: 15px;
+}
+
+/* ---------- ESTADO ---------- */
+
+.estado {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  width: fit-content;
+}
+
+.estado.confirmado {
+  background: #c7f5d9;
+  color: #0a6b3e;
+}
+
+.estado.pendiente {
+  background: #fff1c2;
+  color: #916400;
+}
+
+.estado.cancelado {
+  background: #ffd6d6;
+  color: #7a0000;
+}
+
+/* ---------- ACCIONES ---------- */
+
+.acciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.accion-card {
+  padding: 20px;
+  border-radius: 14px;
+  border: 2px dashed #3282b8;
+  background-color: #f9fdff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.accion-card:hover {
+  background-color: #e9f4fb;
+  transform: scale(1.03);
+}
+
+.accion-card h4 {
+  margin-bottom: 8px;
+  color: #0f4c75;
+}
+
+.accion-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ---------- HISTORIAL ---------- */
+
+.historial p {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+.historial p:last-child {
+  border-bottom: none;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,104 @@
+.dashboard-container {
+  padding: 40px;
+  background-color: #f4f9fc;
+  min-height: calc(100vh - 80px); /* resta altura del navbar */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* centra la página pero no el contenido */
+}
+
+
+.dashboard-header {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-info img {
+  width: 60px;
+}
+
+.btn-edit {
+  background: #2f80ed;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.section {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.turnos-grid, .acciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.turno-card {
+  border: 1px solid #dce8f5;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.estado {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.confirmado {
+  background-color: #d4f8e8;
+  color: #0d684c;
+}
+
+.pendiente {
+  background-color: #fff3cd;
+  color: #8a6d3b;
+}
+
+.accion-card {
+  border: 1px solid #e1ecf7;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.accion-card:hover {
+  background-color: #f0f8ff;
+  transform: translateY(-3px);
+}
+
+.historial {
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+.dashboard-container {
+  padding: 30px;
+  background-color: #f4f9fc;
+  min-height: calc(100vh - 80px);
+  margin-top: 80px; 
+}
