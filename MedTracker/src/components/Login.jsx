@@ -48,9 +48,9 @@ const Login = () => {
         confirmButtonColor: "#00acdb",
       }).then(() => {
         if (data.tipo === "paciente") {
-          navigate("/home-paciente");
+          navigate("/dashboard-paciente");
         } else {
-          navigate("/carga-evolutivo"); // home del especialista
+          navigate("/dashboard-especialista"          ); // home del especialista
         }
       });
     } catch (error) {
