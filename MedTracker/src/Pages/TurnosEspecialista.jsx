@@ -8,9 +8,9 @@ const TurnosEspecialista = () => {
   const [cargando, setCargando] = useState(true);
   const [filtroEstado, setFiltroEstado] = useState("");
 
-  // ============================
-  // 1) FUNCIÓN PARA CARGAR TURNOS
-  // ============================
+
+  //FUNCIÓN PARA CARGAR TURNOS
+
   const obtenerTurnos = () => {
     if (!especialista) return;
 
@@ -28,9 +28,8 @@ const TurnosEspecialista = () => {
     obtenerTurnos();
   }, [especialista]);
 
-  // ============================================
-  // 2) FUNCIÓN PARA ACTUALIZAR EL ESTADO DEL TURNO
-  // ============================================
+  
+  //FUNCIÓN PARA ACTUALIZAR EL ESTADO DEL TURNO=
   const actualizarEstado = async (idTurno, nuevoEstado) => {
     try {
       await fetch(`http://localhost:3000/turno/${idTurno}/estado`, {
@@ -46,9 +45,7 @@ const TurnosEspecialista = () => {
     }
   };
 
-  // ============================
-  // 3) FILTRAR TURNOS
-  // ============================
+  // FLTRAR TURNOS
   const turnosFiltrados = filtroEstado
     ? turnos.filter(
         (t) => t.estado.toLowerCase() === filtroEstado.toLowerCase()
