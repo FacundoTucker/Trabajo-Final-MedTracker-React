@@ -10,6 +10,32 @@ export default function IndicacionMedica() {
   const [historia, setHistoria] = useState(null);
   const [indicacion, setIndicacion] = useState("");
   const printRef = useRef();
+  const [fecha, setFecha] = useState("");
+  const [diagnostico, setDiagnostico] = useState("");
+  const [especialista, setEspecialista] = useState(null);
+  const descripcionFinal =  `Dr. ${especialista?.apellido} ${especialista?.nombre} - ${indicacion} - Diagnóstico: ${diagnostico}`;
+
+
+  // usuarioActivo en local
+  const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
+  const idEspecialista = usuario?.id;
+
+  // datos completos
+  useEffect(() => {
+    const obtenerEspecialista = async () => {
+      if (!idEspecialista) return;
+
+      try {
+        const resp = await fetch(`http://localhost:3000/especialista/${idEspecialista}`);
+        const datos = await resp.json();
+        setEspecialista(datos);
+      } catch (error) {
+        console.error("Error al obtener especialista:", error);
+      }
+    };
+
+    obtenerEspecialista();
+  }, []);
 
   useEffect(() => {
     if (!dniCargado) return;
@@ -85,6 +111,8 @@ export default function IndicacionMedica() {
             font-size: 20px;
             gap: 10px;
           }
+          .item2 {position: absolute;  bottom: 20px;  display: flex;
+           flex-direction: column;}
           .item { display: flex; flex-direction: column; align-items: flex-end; }
           .item label { font-weight: bold; margin-bottom: 5px; }
           .bloqueIndicacion {
@@ -101,6 +129,7 @@ export default function IndicacionMedica() {
           <img id="recetaFondo" src="${fondoBase64}" />
 
           <div class="bloqueDatos">
+            <div class="item"><label>Fecha:</label> ${fecha ? fecha.split("-").reverse().join("/") : ""}</div>
             <div class="item"><label>Nombre y Apellido:</label> ${paciente ? `${paciente.nombre} ${paciente.apellido}` : ""}</div>
             <div class="item"><label>DNI:</label> ${paciente ? paciente.DNI : ""}</div>
             <div class="item"><label>Domicilio:</label> ${paciente ? paciente.domicilio : ""}</div>
@@ -108,7 +137,9 @@ export default function IndicacionMedica() {
 
           <div class="bloqueIndicacion">
             ${indicacion ? indicacion.replace(/\n/g, "<br>") : ""}
+            <div class="item2"><label>Diagnóstico:</label> ${diagnostico || ""}</div>
           </div>
+          
         </div>
       </body>
       </html>
@@ -128,7 +159,7 @@ export default function IndicacionMedica() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          descripcion: indicacion,
+          descripcion: descripcionFinal,
           idHistoriaClinica: historia.idHistoriaClinica,
           fecha: new Date().toISOString()
         }),
@@ -170,9 +201,11 @@ export default function IndicacionMedica() {
       >
         {paciente ? (
           <>
+            <label className="labelCarga">Fecha:</label>
+            <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} />
             <label className="labelCarga">Nombre y Apellido:</label>
             <input
-              className="campoReceta campoNombre"
+              className="campoReceta datos"
               type="text"
               readOnly
               value={`${paciente.nombre} ${paciente.apellido}`}
@@ -180,7 +213,7 @@ export default function IndicacionMedica() {
 
             <label className="labelCarga">DNI:</label>
             <input
-              className="campoReceta campoDni"
+              className="campoReceta datos"
               type="text"
               readOnly
               value={paciente.DNI}
@@ -188,7 +221,7 @@ export default function IndicacionMedica() {
 
             <label className="labelCarga">Domicilio:</label>
             <input
-              className="campoReceta campoDomicilio"
+              className="campoReceta datos"
               type="text"
               readOnly
               value={paciente.domicilio}
@@ -199,6 +232,18 @@ export default function IndicacionMedica() {
               value={indicacion}
               onChange={(e) => setIndicacion(e.target.value)}
             ></textarea>
+            <div className="filaDiagnostico">
+              <label className="labelCarga diagnostico">Diagnóstico:</label>
+              <input
+                className="campoReceta campoDiagnostico"
+                type="text"
+                placeholder="Diagnóstico"
+                value={diagnostico}
+                onChange={(e) => setDiagnostico(e.target.value)}
+              />
+            </div>
+
+
           </>
         ) : (
           <p>No se encontró el paciente.</p>

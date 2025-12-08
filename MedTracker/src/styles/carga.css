@@ -13,13 +13,12 @@
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column; 
+  align-items: left; 
 }
+
 .contenedorEvolutivo{
-  width: 60%;
+  width: 90%;
   max-width: 90%;
   margin: 30px;
   background-color: rgb(182, 243, 255);
@@ -44,7 +43,8 @@
   align-self: center;
 }
 .contenedorPrincipalCargaEvolutivo {
-  width: 70%;
+  width: 90%;
+  max-width: 90%;
   height: 400px;
   max-width: 90%;
   margin: 30px;
@@ -52,7 +52,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  align-self: center;
+  align-self: left;
 }
 .contenedorCarga{
   width: 90%;
@@ -84,8 +84,9 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 .fechaCarga {
-  width: 25%;
+  width: 40%;
   display:grid;
+  margin: 30px;
   grid-template-columns: 1fr 1fr;
   border:solid #ccc 1px;
   border-radius:8px;
@@ -95,15 +96,11 @@
 }
 
 .indicacionMedica .contenedorPrincipal2 {
-  max-width: 100%; /* botón y estructura arriba → ancho completo */
+  max-width: 100%;
   width: 100%;
   margin: 20px 0;
 }
 
-
-/* ==============================
-   TÍTULOS
-============================== */
 
 .tituloCarga{
   margin-top: 20px;
@@ -111,14 +108,17 @@
   color: #333;
 }
 
-/* ==============================
-   FORMULARIOS
-============================== */
 
 .labelCarga {
+  font-family: Arial, sans-serif;
   font-weight: bold;
   display: block;
   margin: 10px 0 5px;
+  font-size: 20px;
+}
+
+.labelCarga.diagnostico {
+  text-align: left;
 }
 
 .variosCarga {
@@ -135,9 +135,6 @@
   resize: vertical;
 }
 
-/* ==============================
-   BOTONES
-============================== */
 
 .botonCarga {
   width: 100%;
@@ -164,9 +161,6 @@
   background: #3c8b40;
 }
 
-/* ==============================
-   HISTORIA / ENLACES
-============================== */
 
 .historiaGuardada {
   width: 100%;
@@ -190,9 +184,6 @@
 }
 
 
-/* ==============================
-  VARIOS
-============================== */
 .recetario {
   padding: 10px 60px 30px 60px;
   width: 550px;
@@ -202,33 +193,64 @@
   background-size: cover !important;
   position: relative;
   align-items: flex-end;
-  margin: 0 auto; /* centrado en pantalla */
+  margin: 0 auto; 
   page-break-inside: avoid;
   text-align: right;
 }
-
-.campoIndicacion.campoReceta {
-  top: 290px;
-  left: 60px;
-  width: 500px;
-  height: 350px;
+.campoReceta.datos {
   font-size: 20px;
   background: transparent !important; 
-  padding: 100px 60px 30px 60px !important;
-  color: #000;
-  border: none;
-  outline: none;
+  border: transparent !important;
+  font-family: Arial, sans-serif;
+  text-align: right;
 }
 
-/* ==============================
-   FORMULARIO EN DOS COLUMNAS
-============================== */
+.campoReceta.campoDiagnostico {
+  font-size: 20px;
+  background: transparent !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(0, 150, 255, 0.15);
+  background: rgba(0, 150, 255, 0.04) !important; 
+  border-radius: 10px;   font-family: Arial, sans-serif;
+  text-align: left;
+
+
+}
+
+.filaDiagnostico {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.filaDiagnostico .labelCarga {
+  margin-right: 10px;
+}
+
+.campoDiagnostico {
+  flex: 1; 
+}
+
+
+.campoReceta.campoIndicacion {
+  width: 500px;
+  height: 300px;
+  font-size: 20px;
+  background: transparent !important; 
+  padding: 50px 0px 30px 70px !important;
+  color: #000;
+  background: rgba(0, 150, 255, 0.04) !important; 
+  border-radius: 10px;   font-family: Arial, sans-serif;
+  border-radius: 10px;  
+  outline: none;
+}
 
 .formDosColumnas{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
