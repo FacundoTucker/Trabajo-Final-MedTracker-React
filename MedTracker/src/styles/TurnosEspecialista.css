@@ -1,69 +1,113 @@
-/* CONTENEDOR GENERAL */
+/* Contenedor general */
 .turnos-especialista-container {
-  padding: 20px;
+  padding: 40px 20px; /* Más espacio arriba/abajo y a los lados */
+  max-width: 1000px; /* Limita el ancho para que no se vea gigante en pantallas grandes */
+  margin: 0 auto; /* Centra el contenedor */
+  background-color: #f4f8fb; /* Fondo suave */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom:  98px;
+  margin-top: 40px;
 }
 
-/* GRID DE 3 COLUMNAS */
+/* Título */
+.turnos-especialista-container h2 {
+  color: #0f4c75;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Filtro de turnos */
+.filtros-turnos {
+  margin-bottom: 20px;
+}
+
+.filtros-turnos label {
+  font-weight: 500;
+  color: #1b262c;
+}
+
+.filtros-turnos select {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Lista de turnos como grid */
 .lista-turnos-esp {
-  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
   padding: 0;
   margin: 0;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  list-style: none;
 }
 
-/* CARD DEL TURNO */
+/* Card del turno */
 .item-turno-esp {
   background: white;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-left: 10px solid transparent;
-  transition: 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
 }
 
-/* INFORMACIÓN */
-.turno-info {
-  margin-bottom: 10px;
+.item-turno-esp:hover {
+  transform: translateY(-3px);
 }
 
-/* COLORES SEGÚN ESTADO */
+/* Información del turno */
+.turno-info p {
+  margin: 6px 0;
+  color: #1b262c;
+  font-size: 14px;
+}
+
+/* Estado del turno: fondo + borde izquierdo */
 .estado-pendiente {
   background: #fff8db;
-  border-left-color: #f1c40f;
+  border-left: 6px solid #f1c40f;
 }
 
 .estado-confirmado {
   background: #e9f7ef;
-  border-left-color: #2ecc71;
+  border-left: 6px solid #2ecc71;
 }
 
 .estado-rechazado {
   background: #fdecea;
-  border-left-color: #e74c3c;
+  border-left: 6px solid #e74c3c;
 }
 
 .estado-reservado {
   background: #e8f4fd;
-  border-left-color: #3498db;
+  border-left: 6px solid #3498db;
 }
 
-/* BOTONES */
+/* Botones */
 .btn-container {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 12px;
+}
+
+.btn-confirmar, .btn-rechazar {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
 }
 
 .btn-confirmar {
   background-color: #2ecc71;
   color: white;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .btn-confirmar:hover {
@@ -73,44 +117,15 @@
 .btn-rechazar {
   background-color: #e74c3c;
   color: white;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .btn-rechazar:hover {
   background-color: #c0392b;
 }
 
-.lista-turnos-esp {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.item-turno-esp {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-}
-.turnos-especialista-container {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 60px); 
-  padding: 20px;
-}
-
-/* Contenido de los turnos que crece */
-.lista-turnos-esp {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  flex: 1; 
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Responsive: una columna en móviles */
+@media (max-width: 768px) {
+  .lista-turnos-esp {
+    grid-template-columns: 1fr;
+  }
 }

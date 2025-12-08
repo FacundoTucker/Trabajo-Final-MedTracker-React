@@ -3,7 +3,7 @@ import "../styles/registro.css";
 
 const Header = () => {
   return (
-    <header>
+    <header className="main-header">
       <Link to="/" className="medTracker">MEDTRACKER</Link>
     </header>
   );
