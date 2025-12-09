@@ -1,4 +1,5 @@
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -14,9 +15,9 @@ const Footer = () => {
         <section className="footer-section links">
           <h4>Navegación</h4>
           <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-            <li><a href="/login">Iniciar sesión</a></li>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
+            <li><Link to="/login">Iniciar sesión</Link></li>
           </ul>
         </section>
 
