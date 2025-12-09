@@ -17,7 +17,7 @@ useEffect(() => {
 
   const obtenerTurnos = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/turno/paciente/${usuario.id}`);
+        const res = await fetch(`https://trabajo-final-medtracker.onrender.com/turno/paciente/${usuario.id}`);
         const data = await res.json();
         setTurnos(data);
       } catch (err) {
@@ -51,7 +51,7 @@ useEffect(() => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/turno/${idTurno}`, {
+      const res = await fetch(`https://trabajo-final-medtracker.onrender.com/turno/${idTurno}`, {
         method: "DELETE",
       });
 
@@ -79,7 +79,7 @@ useEffect(() => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/turno/${idTurno}`, {
+      const res = await fetch(`https://trabajo-final-medtracker.onrender.com/turno/${idTurno}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fechaTurno: nuevaFecha })

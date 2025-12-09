@@ -19,7 +19,7 @@ export default function CargarPaciente({ onPacienteEncontrado }) {
       return;
     }
 
-    fetch(`http://localhost:3000/paciente/dni/${dni}`)
+    fetch(`https://trabajo-final-medtracker.onrender.com/paciente/dni/${dni}`)
       .then((r) => {
         if (!r.ok) throw new Error();
         return r.json();

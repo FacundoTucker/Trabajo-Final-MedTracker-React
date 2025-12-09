@@ -13,7 +13,7 @@ export default function VerHC() {
   useEffect(() => {
     if (!dniCargado) return;
 
-    fetch(`http://localhost:3000/paciente/dni/${dniCargado}`)
+    fetch(`https://trabajo-final-medtracker.onrender.com/paciente/dni/${dniCargado}`)
       .then((r) => {
         if (!r.ok) throw new Error();
         return r.json();
@@ -22,7 +22,7 @@ export default function VerHC() {
         setPaciente(data);
 
         return fetch(
-          `http://localhost:3000/historia-clinica/paciente/${data.idPaciente}`
+          `https://trabajo-final-medtracker.onrender.com/historia-clinica/paciente/${data.idPaciente}`
         );
       })
       .then((r) => {
@@ -32,7 +32,7 @@ export default function VerHC() {
       .then((dataHistoria) => {
         setHistoria(dataHistoria);
         setIndicaciones(dataHistoria.indicaciones || []);
-         fetch("http://localhost:3000/evolutivo")
+         fetch("https://trabajo-final-medtracker.onrender.com/evolutivo")
       .then((r) => r.json())
       .then((todos) => {
         const filtrados = todos.filter(

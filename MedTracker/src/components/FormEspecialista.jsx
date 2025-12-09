@@ -79,7 +79,7 @@ const FormEspecialista = () => {
 
 
     try {
-      const response = await fetch("http://localhost:3000/especialista", {
+      const response = await fetch("https://trabajo-final-medtracker.onrender.com/especialista", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(especialistaParaBack),

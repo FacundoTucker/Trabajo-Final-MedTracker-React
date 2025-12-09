@@ -39,7 +39,7 @@ export default function DashboardPaciente() {
 
     
     // TRAER TURNOS REALES DESDE EL BACKEND
-    fetch(`http://localhost:3000/turno/paciente/${user.id}`)
+    fetch(`https://trabajo-final-medtracker.onrender.com/turno/paciente/${user.id}`)
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0) {

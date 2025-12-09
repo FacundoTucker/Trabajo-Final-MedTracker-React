@@ -62,7 +62,7 @@ const FormPaciente = () => {
   };
 
   try {
-    const response = await fetch("http://localhost:3000/paciente", {
+    const response = await fetch("https://trabajo-final-medtracker.onrender.com/paciente", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pacienteParaBack),

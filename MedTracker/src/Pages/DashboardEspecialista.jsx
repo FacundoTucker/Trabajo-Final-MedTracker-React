@@ -27,7 +27,7 @@ export default function DashboardEspecialista() {
     if (!usuario?.id) return;
 
    // TRAEMOS LOS TURNOS REALES
-    fetch(`http://localhost:3000/especialista/${usuario.id}/turnos`)
+    fetch(`https://trabajo-final-medtracker.onrender.com/especialista/${usuario.id}/turnos`)
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0) {

@@ -28,7 +28,7 @@ const FormEditarEspecialista = () => {
   useEffect(() => {
     const fetchEspecialista = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/especialista/${id}`);
+        const res = await fetch(`https://trabajo-final-medtracker.onrender.com/especialista/${id}`);
         if (!res.ok) throw new Error("No se pudieron obtener los datos");
 
         const data = await res.json();
@@ -78,7 +78,7 @@ const FormEditarEspecialista = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/especialista/${id}`, {
+      const response = await fetch(`https://trabajo-final-medtracker.onrender.com/especialista/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(especialistaParaBack),

@@ -19,7 +19,7 @@ const CargaEvolutivo = () => {
       if (!idEspecialista) return;
 
       try {
-        const resp = await fetch(`http://localhost:3000/especialista/${idEspecialista}`);
+        const resp = await fetch(`https://trabajo-final-medtracker.onrender.com/especialista/${idEspecialista}`);
         const datos = await resp.json();
         setEspecialista(datos);
       } catch (error) {
@@ -48,7 +48,7 @@ const CargaEvolutivo = () => {
     const descripcionFinal = `Dr. ${especialista?.apellido} ${especialista?.nombre} - ${fechaLegible} - ${texto}`;
 
     try {
-      const res = await fetch("http://localhost:3000/evolutivo", {
+      const res = await fetch("https://trabajo-final-medtracker.onrender.com/evolutivo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

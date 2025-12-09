@@ -26,7 +26,7 @@ export default function IndicacionMedica() {
       if (!idEspecialista) return;
 
       try {
-        const resp = await fetch(`http://localhost:3000/especialista/${idEspecialista}`);
+        const resp = await fetch(`https://trabajo-final-medtracker.onrender.com/especialista/${idEspecialista}`);
         const datos = await resp.json();
         setEspecialista(datos);
       } catch (error) {
@@ -40,7 +40,7 @@ export default function IndicacionMedica() {
   useEffect(() => {
     if (!dniCargado) return;
 
-    fetch(`http://localhost:3000/paciente/dni/${dniCargado}`)
+    fetch(`https://trabajo-final-medtracker.onrender.com/paciente/dni/${dniCargado}`)
       .then((r) => {
         if (!r.ok) throw new Error();
         return r.json();
@@ -49,7 +49,7 @@ export default function IndicacionMedica() {
         setPaciente(dataPaciente);
 
         return fetch(
-          `http://localhost:3000/historia-clinica/paciente/${dataPaciente.idPaciente}`
+          `https://trabajo-final-medtracker.onrender.com/historia-clinica/paciente/${dataPaciente.idPaciente}`
         );
       })
       .then((r) => {
@@ -155,7 +155,7 @@ export default function IndicacionMedica() {
     }
 
     try {
-      const resp = await fetch("http://localhost:3000/indicacion-medica", {
+      const resp = await fetch("https://trabajo-final-medtracker.onrender.com/indicacion-medica", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

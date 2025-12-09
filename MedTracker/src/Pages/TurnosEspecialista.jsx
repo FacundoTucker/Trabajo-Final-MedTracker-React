@@ -14,7 +14,7 @@ const TurnosEspecialista = () => {
   const obtenerTurnos = () => {
     if (!especialista) return;
 
-    fetch(`http://localhost:3000/especialista/${especialista.id}/turnos`)
+    fetch(`https://trabajo-final-medtracker.onrender.com/especialista/${especialista.id}/turnos`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Turnos recibidos:", data);
@@ -32,7 +32,7 @@ const TurnosEspecialista = () => {
   //FUNCIÓN PARA ACTUALIZAR EL ESTADO DEL TURNO=
   const actualizarEstado = async (idTurno, nuevoEstado) => {
     try {
-      await fetch(`http://localhost:3000/turno/${idTurno}/estado`, {
+      await fetch(`https://trabajo-final-medtracker.onrender.com/turno/${idTurno}/estado`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ estado: nuevoEstado }),

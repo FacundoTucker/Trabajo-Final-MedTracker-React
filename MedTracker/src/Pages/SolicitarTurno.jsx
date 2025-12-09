@@ -12,7 +12,7 @@ const SolicitarTurno = () => {
 
   // Cargar especialistas al montar el componente
   useEffect(() => {
-    fetch("http://localhost:3000/especialista")
+    fetch("https://trabajo-final-medtracker.onrender.com/especialista")
       .then(res => res.json())
       .then(data => setEspecialistas(data))
       .catch(err => console.error("Error cargando especialistas:", err));
@@ -62,7 +62,7 @@ if (hora < 8 || hora >= 16) {
 
 
     try {
-      const res = await fetch("http://localhost:3000/turno", {
+      const res = await fetch("https://trabajo-final-medtracker.onrender.com/turno", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
