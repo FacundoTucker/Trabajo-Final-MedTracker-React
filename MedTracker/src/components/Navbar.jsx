@@ -98,6 +98,8 @@ const Navbar = () => {
             <li><Link to="/mis-turnos">Mis Turnos</Link></li>
             <span className="divider-vertical"></span>
             <li><Link to="/solicitar-turno">Solicitar Turno</Link></li>
+            <span className="divider-vertical"></span>
+            <li><Link to="/verhc/:dniCargado">Historia Clinica</Link></li>
           </>
         )}
 

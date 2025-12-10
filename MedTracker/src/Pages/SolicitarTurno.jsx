@@ -1,211 +1,141 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import "../styles/SolicitarTurno.css";
 
 const SolicitarTurno = () => {
-  // Obtener el usuario logueado desde localStorage
   const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
 
   const [especialistas, setEspecialistas] = useState([]);
   const [idEspecialista, setIdEspecialista] = useState("");
-  const [fechaTurno, setFechaTurno] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [hora, setHora] = useState("");
+  const [ocupados, setOcupados] = useState([]);
 
-  // Cargar especialistas al montar el componente
+  // Cargar especialistas
   useEffect(() => {
     fetch("https://trabajo-final-medtracker.onrender.com/especialista")
-      .then(res => res.json())
-      .then(data => setEspecialistas(data))
-      .catch(err => console.error("Error cargando especialistas:", err));
+      .then(r => r.json())
+      .then(setEspecialistas)
+      .catch(err => console.error(err));
   }, []);
 
-  const solicitarTurno = async (e) => {
+  // Cargar turnos ocupados al cambiar especialista o fecha
+  useEffect(() => {
+    if (!idEspecialista || !fecha) return;
+    fetch(`https://trabajo-final-medtracker.onrender.com/turno/especialista/${idEspecialista}?fecha=${fecha}`)
+      .then(r => r.json())
+      .then(d => {
+        if (!Array.isArray(d)) d = []; // asegurar que d sea array
+        const horas = d.map(t =>
+          new Date(t.fechaTurno).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+        );
+        setOcupados(horas);
+      })
+      .catch(err => console.error(err));
+  }, [idEspecialista, fecha]);
+
+  // Generar horarios disponibles 08:00 a 15:30, cada 30 min
+  const generarHorarios = () => {
+    const horarios = [];
+    for (let h = 8; h <= 15; h++) {
+      ["00", "30"].forEach(min => {
+        if (h === 15 && min === "30") return; // 15:30 es la última franja permitida
+        const hStr = `${h.toString().padStart(2, "0")}:${min}`;
+        if (!ocupados.includes(hStr)) horarios.push(hStr);
+      });
+    }
+    return horarios;
+  };
+
+  // Manejar selección de fecha evitando sábados y domingos
+  const handleFecha = e => {
+    const f = e.target.value;
+    const [year, month, day] = f.split("-").map(Number);
+    const diaSemana = new Date(year, month - 1, day).getDay();
+
+    if (diaSemana === 0 || diaSemana === 6) {
+      Swal.fire("Error", "No se pueden seleccionar sábados ni domingos", "error");
+      setFecha("");
+      return;
+    }
+    setFecha(f);
+  };
+
+  // Enviar turno al backend
+  const enviar = async e => {
     e.preventDefault();
-
-    // Validar campos
-    if (!idEspecialista || !fechaTurno) {
-      Swal.fire("Error", "Completa todos los campos", "error");
-      return;
+    if (!idEspecialista || !fecha || !hora) {
+      return Swal.fire("Error", "Completa todos los campos", "error");
     }
 
-    // Verificar que haya un usuario logueado
-    if (!usuario || !usuario.id) {
-      Swal.fire("Error", "Debes iniciar sesión para sacar un turno", "error");
-      return;
-    }
-
-    // Convertir fecha al formato MySQL DATETIME
-    const fechaFormateada = fechaTurno.replace("T", " ") + ":00";
-
-    const body = {
-      idPaciente: usuario.id,
-      idEspecialista: Number(idEspecialista),
-      fechaTurno: fechaFormateada,
-      estado: "pendiente"
-    };
-
-    // Convertir fecha a objeto Date
-const fechaSeleccionada = new Date(fechaTurno);
-const ahora = new Date();
-
-// Validar turno en el pasado
-if (fechaSeleccionada < ahora) {
-  Swal.fire("Error", "Fecha no valida", "error");
-  return;
-}
-
-// Validar horario de atención 08:00-16:00
-const hora = fechaSeleccionada.getHours();
-if (hora < 8 || hora >= 16) {
-  Swal.fire("Error", "Turno fuera del horario de atención (08:00-16:00)", "error");
-  return;
-}
-
+    const fechaTurno = `${fecha}T${hora}:00`; // usar hora local sin UTC
 
     try {
       const res = await fetch("https://trabajo-final-medtracker.onrender.com/turno", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
+        body: JSON.stringify({
+          idPaciente: usuario.id,
+          idEspecialista: Number(idEspecialista),
+          fechaTurno, // corregido
+          estado: "pendiente"
+        })
       });
 
-      const data = await res.json();
-      console.log("Respuesta del servidor:", data);
-
       if (!res.ok) {
-        Swal.fire("Error", "No se pudo registrar el turno", "error");
-        return;
+        const err = await res.json();
+        return Swal.fire("Error", err.message || "No se pudo registrar", "error");
       }
 
-      Swal.fire("Éxito", "¡Turno solicitado correctamente!", "success");
+      Swal.fire("Éxito", "Turno solicitado correctamente", "success");
       setIdEspecialista("");
-      setFechaTurno("");
-
+      setFecha("");
+      setHora("");
+      setOcupados([]);
     } catch (err) {
       console.error(err);
       Swal.fire("Error", "Fallo al conectar con el servidor", "error");
     }
   };
 
-  return (
-    <div className="contenedor-solicitar">
-      <h2>Solicitar Turno</h2>
-
-      <form className="solicitar-turno-form" onSubmit={solicitarTurno}>
-        <label className="solicitar-turno-label">Especialista</label>
-        <select
-        className="solicitar-turno-select"
-          value={idEspecialista}
-          onChange={(e) => setIdEspecialista(e.target.value)}
-        >
-          <option value="">Seleccione</option>
-          {especialistas.map(e => (
-            <option key={e.idEspecialista} value={e.idEspecialista}>
-              {e.nombre} {e.apellido} – ({e.especialidad})
-            </option>
-          ))}
-        </select>
-
-        <label className="solicitar-turno-label">Fecha y hora</label>
-        <input
-          type="datetime-local"
-          className="solicitar-turno-input"
-          value={fechaTurno}
-          onChange={(e) => setFechaTurno(e.target.value)}
-        />
-
-        <button type="submit" className="solicitar-turno-btn">Confirmar Turno</button>
-      </form>
-    </div>
-  );
-};
-
-// Export por defecto para que App.jsx lo importe correctamente
-export default SolicitarTurno;
-
-/*
-const SolicitarTurno = () => {
-  const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
-
-  const [especialistas, setEspecialistas] = useState([]);
-  const [idEspecialista, setIdEspecialista] = useState("");
-  const [fechaTurno, setFechaTurno] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:3000/especialista")
-      .then(res => res.json())
-      .then(data => setEspecialistas(data))
-      .catch(err => console.error("Error cargando especialistas:", err));
-  }, []);
-
-  const solicitarTurno = async (e) => {
-    e.preventDefault();
-
-    if (!idEspecialista || !fechaTurno) {
-      Swal.fire("Error", "Completa todos los campos", "error");
-      return;
-    }
-
-    const fechaFormateada = fechaTurno.replace("T", " ") + ":00";
-
-    const body = {
-      idPaciente: usuario.id,
-      idEspecialista: Number(idEspecialista),
-      fechaTurno,
-      estado: "pendiente"
-    };
-
-    try {
-      const res = await fetch("http://localhost:3000/turno", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      if (!res.ok) {
-        Swal.fire("Error", "No se pudo registrar el turno", "error");
-        return;
-      }
-
-      Swal.fire("Éxito", "¡Turno solicitado correctamente!", "success");
-      setIdEspecialista("");
-      setFechaTurno("");
-
-    } catch (err) {
-      console.error(err);
-      Swal.fire("Error", "Fallo al conectar con el servidor", "error");
-    }
-  };
+  const hoy = new Date().toISOString().split("T")[0];
+  const horariosDisponibles = generarHorarios();
 
   return (
     <div className="contenedor-solicitar">
       <h2>Solicitar Turno</h2>
-
-      <form onSubmit={solicitarTurno}>
+      <form onSubmit={enviar} className="form-solicitar">
         <label>Especialista</label>
-        <select
-          value={idEspecialista}
-          onChange={(e) => setIdEspecialista(e.target.value)}
-        >
-          <option value="">Seleccione</option>
+        <select value={idEspecialista} onChange={e => setIdEspecialista(e.target.value)} className="input-select">
+          <option value="">Seleccione especialista</option>
           {especialistas.map(e => (
             <option key={e.idEspecialista} value={e.idEspecialista}>
-              {e.nombre} {e.apellido} – ({e.especialidad})
+              {e.nombre} {e.apellido} – {e.especialidad}
             </option>
           ))}
         </select>
 
-        <label>Fecha y hora</label>
+        <label>Fecha</label>
         <input
-          type="datetime-local"
-          value={fechaTurno}
-          onChange={(e) => setFechaTurno(e.target.value)}
+          type="date"
+          value={fecha}
+          onChange={handleFecha}
+          min={hoy}
+          className="input-fecha"
         />
 
-        <button type="submit">Confirmar Turno</button>
+        <label>Hora</label>
+        <select value={hora} onChange={e => setHora(e.target.value)} className="input-select">
+          <option value="">Seleccione hora</option>
+          {horariosDisponibles.map(h => (
+            <option key={h} value={h}>{h}</option>
+          ))}
+        </select>
+
+        <button type="submit" className="btn-confirmar">Confirmar Turno</button>
       </form>
     </div>
   );
 };
 
 export default SolicitarTurno;
-*/
