@@ -1,6 +1,8 @@
 import CargarPaciente from "../components/CargaPaciente";
 import "../styles/carga.css";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+
 
 const CargaEvolutivo = () => {
   const [paciente, setPaciente] = useState(null);
@@ -30,44 +32,60 @@ const CargaEvolutivo = () => {
     obtenerEspecialista();
   }, []);
 
-  const grabarEvolutivo = async () => {
-    if (!paciente) {
-      alert("Primero buscá un paciente");
+    const grabarEvolutivo = async () => {
+      if (!paciente) {
+        Swal.fire({
+          icon: "warning",
+          title: "Atención",
+          text: "Primero buscá un paciente",
+        });
       return;
     }
 
-    if (!fecha || !hora || !texto.trim()) {
-      alert("Completá fecha, hora y evolutivo");
-      return;
-    }
+  if (!fecha || !hora || !texto.trim()) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos incompletos",
+      text: "Completá fecha, hora y evolutivo",
+    });
+    return;
+  }
 
-    const fechaHora = new Date(`${fecha}T${hora}`);
+      const fechaHora = new Date(`${fecha}T${hora}`);
+      const fechaLegible = `${fecha.split("-").reverse().join("/")} ${hora}`;
+      const descripcionFinal = `Dr. ${especialista?.apellido} ${especialista?.nombre} - ${fechaLegible} - ${texto}`;
 
-    const fechaLegible = `${fecha.split("-").reverse().join("/")} ${hora}`;
+      try {
+        const res = await fetch("https://trabajo-final-medtracker.onrender.com/evolutivo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            idHistoriaClinica: paciente.idPaciente,
+            descripcion: descripcionFinal,
+            fecha: fechaHora,
+          }),
+        });
 
-    const descripcionFinal = `Dr. ${especialista?.apellido} ${especialista?.nombre} - ${fechaLegible} - ${texto}`;
+        if (!res.ok) throw new Error("Error en el servidor");
 
-    try {
-      const res = await fetch("https://trabajo-final-medtracker.onrender.com/evolutivo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          idHistoriaClinica: paciente.idPaciente,
-          descripcion: descripcionFinal,
-          fecha: fechaHora,
-        }),
-      });
+        Swal.fire({
+          icon: "success",
+          title: "Guardado",
+          text: "Evolutivo guardado correctamente",
+          timer: 1500,
+          showConfirmButton: false,
+        });
 
-      if (!res.ok) throw new Error("Error en el servidor");
-
-      alert("Evolutivo guardado");
-      setTexto("");
-    } catch (err) {
-      alert("No se pudo guardar");
-      console.error(err);
-    }
-  };
-
+        setTexto("");
+      } catch (err) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo guardar",
+        });
+        console.error(err);
+      }
+    };
   return (
     <>
       <div className="contenedorEvolutivoPrincipal">
