@@ -64,7 +64,7 @@ const Navbar = () => {
     //escucha los cambios del paciente seleccionado
     const actualizarPaciente = (e) => {
       const nuevoPaciente = e.detail;
-      setDniActual(nuevoPaciente?.DNI);
+      setDniActual(nuevoPaciente?.dni);
     };
 
     window.addEventListener("pacienteChanged", actualizarPaciente);
