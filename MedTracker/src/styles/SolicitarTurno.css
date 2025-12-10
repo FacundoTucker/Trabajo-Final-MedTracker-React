@@ -1,51 +1,79 @@
+/* CONTENEDOR PRINCIPAL */
 .contenedor-solicitar {
-  width: 300px;
-  margin: 50px auto;
-  padding: 25px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  max-width: 380px;
+  margin: 60px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* TÍTULO */
 .contenedor-solicitar h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #005f8f;
+  font-size: 22px;
+  font-weight: 600;
 }
 
-/* FORMULARIO SOLO DE ESTA PANTALLA */
-form.solicitar-turno-form {
+/* FORMULARIO */
+form.form-solicitar {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
 }
 
-.solicitar-turno-label {
-  font-weight: bold;
+/* LABELS */
+form.form-solicitar label {
+  font-weight: 600;
   font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
 }
 
-
-/* CAMPOS DEL FORM */
-.solicitar-turno-label, 
-.solicitar-turno-input [type="datetime-local"] {
-  padding: 10px;
-  border-radius: 6px;
+/* INPUTS Y SELECT */
+form.form-solicitar input,
+form.form-solicitar select {
+  padding: 10px 12px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
 }
 
-/* BOTÓN SOLO DE ESTA PANTALLA */
-.solicitar-turno-btn {
+form.form-solicitar input:focus,
+form.form-solicitar select:focus {
+  border-color: #00a2d3;
+  box-shadow: 0 0 5px rgba(0, 162, 211, 0.3);
+}
+
+/* BOTÓN */
+.btn-confirmar {
   margin-top: 10px;
   padding: 12px;
   background: #00a2d3;
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.solicitar-turno-btn:hover {
+.btn-confirmar:hover {
   background: #008bb5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* VEEEER */
+@media (max-width: 420px) {
+  .contenedor-solicitar {
+    margin: 30px 15px;
+    padding: 25px 20px;
+  }
 }
