@@ -109,10 +109,15 @@ const Navbar = () => {
             <li><Link to="/turnos-especialista">Mis Turnos</Link></li>
             <span className="divider-vertical"></span>
             <li><Link to="/carga-evolutivo">Cargar Evolutivo</Link></li>
-            <span className="divider-vertical"></span>
-            <li><Link to={`/verhc/${dniActual || ""}`}>Ver Historia Clínica</Link></li>
-            <span className="divider-vertical"></span>
-            <li><Link to={`/indicacion/${dniActual || ""}`}>Nueva indicación</Link></li>
+            {dniActual && (
+              <>
+              <span className="divider-vertical"></span>
+              <li><Link to={`/verhc/${dniActual}`}>Ver Historia Clínica</Link></li>
+              <span className="divider-vertical"></span>
+              <li><Link to={`/indicacion/${dniActual}`}>Nueva indicación</Link></li>
+            </>
+          )}
+
           </>
         )}
 
