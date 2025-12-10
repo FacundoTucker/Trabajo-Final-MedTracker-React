@@ -99,7 +99,7 @@ const Navbar = () => {
             <span className="divider-vertical"></span>
             <li><Link to="/solicitar-turno">Solicitar Turno</Link></li>
             <span className="divider-vertical"></span>
-            <li><Link to="/verhc/:dniCargado">Historia Clinica</Link></li>
+            <li><Link to={`/verhc/${usuario.DNI}`}>Historia Clínica</Link></li>
           </>
         )}
 
