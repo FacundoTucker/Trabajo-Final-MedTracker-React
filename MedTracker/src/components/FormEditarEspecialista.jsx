@@ -105,7 +105,7 @@ const FormEditarEspecialista = () => {
         text: "✔ Los cambios fueron guardados correctamente.",
         confirmButtonColor: "#00acdb",
       }).then(() => {
-        navigate("/home-especialista");
+        navigate("/dashboard-paciente");
       });
 
     } catch (err) {
