@@ -65,6 +65,7 @@ const Navbar = () => {
     const actualizarPaciente = (e) => {
       const nuevoPaciente = e.detail;
       setDniActual(nuevoPaciente?.dni);
+      navigate(location.pathname, { replace: true });
     };
 
     window.addEventListener("pacienteChanged", actualizarPaciente);
