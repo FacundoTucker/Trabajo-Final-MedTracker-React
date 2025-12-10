@@ -60,7 +60,7 @@ const CargaEvolutivo = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            idHistoriaClinica: paciente.idPaciente,
+            idHistoriaClinica: paciente.historiaClinica.idHistoriaClinica,
             descripcion: descripcionFinal,
             fecha: fechaHora,
           }),

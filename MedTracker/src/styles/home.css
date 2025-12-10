@@ -35,7 +35,9 @@
 /* Menu desplegable de boton REGISTRO */
 .dropdown{
   position:relative;
-  display:inline-block}
+  display:inline-block;
+  margin-bottom: 10px;
+}
 .dropdown-menu{
   position:absolute;top:110%;left:0;width:140px;z-index:1000;
   display:flex;flex-direction:column;
