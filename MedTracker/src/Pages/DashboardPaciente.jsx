@@ -111,7 +111,7 @@ export default function DashboardPaciente() {
       <p>Ver lista completa</p>
     </Link>
 
-    <Link to={`/verhc/${usuario.dni}`}className="accion-card">
+    <Link to={`/verhc/${user.dni}`}className="accion-card">
       <h4>Indicaciones médicas</h4>
       <p>Ver tratamientos</p>
     </Link>
