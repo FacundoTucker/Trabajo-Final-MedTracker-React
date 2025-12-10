@@ -150,9 +150,15 @@ export default function IndicacionMedica() {
 
   const guardarIndicacion = async () => {
     if (!historia) {
-      alert("❌ No hay historia clínica asociada al paciente.");
-      return;
-    }
+    Swal.fire({
+      icon: "warning",
+      title: "Sin historia clínica",
+      text: "No hay una historia clínica asociada al paciente.",
+      confirmButtonColor: "#00acdb",
+    });
+    return;
+}
+
 
     try {
       const resp = await fetch("https://trabajo-final-medtracker.onrender.com/indicacion-medica", {
