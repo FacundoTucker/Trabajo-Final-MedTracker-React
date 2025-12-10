@@ -114,7 +114,7 @@ const MisTurnos = () => {
             <tbody>
               {turnos.map(t => (
                 <tr key={t.idTurno}>
-                  <td>{new Date(t.fechaTurno).toLocaleString()}</td>
+                  <td>{t.fechaTurno.replace("T", " ").slice(0, 16)}</td>
                   <td>{t.especialista?.nombre} {t.especialista?.apellido}</td>
                   <td>{t.estado}</td>
                   <td>

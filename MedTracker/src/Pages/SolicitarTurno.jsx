@@ -68,7 +68,9 @@ const SolicitarTurno = () => {
       return Swal.fire("Error", "Completa todos los campos", "error");
     }
 
-    const fechaTurno = `${fecha}T${hora}:00`; // usar hora local sin UTC
+    const fechaLocal = new Date(`${fecha}T${hora}:00`);
+    const fechaTurno = new Date(fechaLocal.getTime() - fechaLocal.getTimezoneOffset() * 60000).toISOString();
+
 
     try {
       const res = await fetch("https://trabajo-final-medtracker.onrender.com/turno", {
@@ -122,6 +124,7 @@ const SolicitarTurno = () => {
           onChange={handleFecha}
           min={hoy}
           className="input-fecha"
+          onKeyDown={(e) => e.preventDefault()} 
         />
 
         <label>Hora</label>
